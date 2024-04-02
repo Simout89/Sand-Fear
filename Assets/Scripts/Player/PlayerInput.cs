@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     public bool InteractButton { get; private set; }
     public bool SecondInteractButton { get; private set; }
     public bool InteractButtonHold { get; private set; }
+    public bool EscButton { get; private set; }
     //public static UnityEvent<bool> OnInputState = new UnityEvent<bool>();
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerInput : MonoBehaviour
         Jump = Input.GetButtonDown("Jump");
         InteractButton = Input.GetButtonDown("Interact1");
         SecondInteractButton = Input.GetButtonDown("Interact2");
+        EscButton = Input.GetButtonDown("Cancel");
         InteractButtonHold = Input.GetButton("Interact1");
     }
 }

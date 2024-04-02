@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,13 +16,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private AudioSource WalkSound;
 
     private Vector3 velocity;
     private bool isGrounded;
+
+    private bool inCar = true;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();
+        PlayerFog.OnPlayerFog.AddListener(HandlePlayerFog);
+    }
+
+    private void HandlePlayerFog()
+    {
+        inCar = !inCar;
     }
 
     private void Update()
@@ -32,6 +42,19 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
+
+        if(!inCar)
+        {
+            if (Mathf.Abs(playerInput.Horizontal) + Mathf.Abs(playerInput.Vertical) <= 0.9)
+            {
+                WalkSound.mute = true;
+            }
+            else
+            {
+                WalkSound.mute = false;
+            }
+        }else
+            WalkSound.mute = true;
 
         Vector3 move = transform.right * playerInput.Horizontal + transform.forward * playerInput.Vertical;
 

@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Zenject;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Slider slider;
+    [SerializeField] private GameObject Menu;
+
+    private PlayerInput playerInput;
+    [Inject]
+    public void Construct(PlayerInput playerInput)
     {
-        
+        this.playerInput = playerInput;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(playerInput.EscButton)
+        {
+            Menu.SetActive(!Menu.active);
+        }
+    }
+
+    public void VolumeSlider()
+    {
+        AudioListener.volume = slider.value;
     }
 }

@@ -2,18 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCameraController : MonoBehaviour
 {
     private PlayerInput playerInput;
     [SerializeField] private Transform PlayerCamera;
-    [SerializeField] private float mouseSensivity = 100f;
+    [SerializeField] private Slider slider;
     private float mouseX;
     private float mouseY;
 
     private float xRotation = 0f;
 
     private bool HoldItem = false;
+
+    private bool LockMouse = true;
 
     private void Awake()
     {
@@ -29,18 +32,32 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Update()
     {
-        mouseX = playerInput.MouseX * mouseSensivity * Time.deltaTime;
-        mouseY = playerInput.MouseY * mouseSensivity * Time.deltaTime;
+        if (playerInput.EscButton)
+            LockMouse = !LockMouse;
 
-        float minpos;
-        if (HoldItem)
-            minpos = 30f;
+        if (LockMouse)
+        {
+            Time.timeScale = 1f;
+            mouseX = playerInput.MouseX * slider.value * Time.deltaTime;
+            mouseY = playerInput.MouseY * slider.value * Time.deltaTime;
+
+            float minpos;
+            if (HoldItem)
+                minpos = 30f;
+            else
+                minpos = 90f;
+
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, minpos);
+            PlayerCamera.localRotation = Quaternion.Euler(xRotation, 0, 0);
+            transform.Rotate(Vector3.up * mouseX);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         else
-            minpos = 90f;
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+        }
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, minpos);
-        PlayerCamera.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX);
     }
 }
