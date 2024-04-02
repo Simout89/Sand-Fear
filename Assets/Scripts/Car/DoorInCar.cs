@@ -7,6 +7,8 @@ using Zenject.SpaceFighter;
 public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
 {
     [SerializeField] private Transform PointToTeleport;
+    [SerializeField] private AudioClip DoorSound;
+    private AudioSource audioSource;
     public bool Active { get; set; }
 
     private GameObject Player;
@@ -24,11 +26,15 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
         this.carController = carController;
     }
     // Update is called once per frame
-
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public void ActiveHold()
     {
         if(carController.leverHorizontal.Value == 0 && (carController.leverVertical.Value == 0))
         {
+            audioSource.PlayOneShot(DoorSound);
             PlayerFog.OnPlayerFog.Invoke();
             CarFog.OnCarFog.Invoke();
             SoundController.onPlayerPosition.Invoke();

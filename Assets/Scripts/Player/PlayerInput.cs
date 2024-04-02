@@ -10,12 +10,11 @@ public class PlayerInput : MonoBehaviour
     public float HorizontalRaw { get; private set; }
     public float VerticalRaw { get; private set; }
     public bool Fire { get; private set; }
-    public static UnityEvent OnFire = new UnityEvent();
-
     public float MouseX { get; private set; }
     public float MouseY { get; private set; }
     public bool Jump { get; private set; }
     public bool InteractButton { get; private set; }
+    public bool SecondInteractButton { get; private set; }
     public bool InteractButtonHold { get; private set; }
     //public static UnityEvent<bool> OnInputState = new UnityEvent<bool>();
     private void Awake()
@@ -34,6 +33,7 @@ public class PlayerInput : MonoBehaviour
         Horizontal = Input.GetAxis("Horizontal");
         Jump = Input.GetButtonDown("Jump");
         InteractButton = Input.GetButtonDown("Interact1");
+        SecondInteractButton = Input.GetButtonDown("Interact2");
         InteractButtonHold = Input.GetButton("Interact1");
     }
 }
