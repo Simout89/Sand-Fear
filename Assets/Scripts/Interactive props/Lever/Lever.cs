@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Lever : MonoBehaviour, IValueProps, IInteractive
 {
@@ -18,14 +19,23 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
 
     private bool isDelay = true;
     // переделать
-    PlayerInput playerInput;
-    PlayerInteract playerInteract;
+    private PlayerInteract playerInteract;
+    [Inject]
+    public void Construct(PlayerInteract playerInteract)
+    {
+        this.playerInteract = playerInteract;
+    }
+
+    private PlayerInput playerInput;
+    [Inject]
+    public void Construct(PlayerInput playerInput)
+    {
+        this.playerInput = playerInput;
+    }
 
     private void Awake()
     {
         Value = DefaultValue;
-        playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-        playerInteract = GameObject.Find("Player").GetComponent<PlayerInteract>();
     }
 
     // Update is called once per frame
