@@ -224,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 18583137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4, y: 1.7364, z: -6.07}
+  m_LocalPosition: {x: 5.31, y: 1.7364, z: -6.2}
   m_LocalScale: {x: 1, y: 8.8728, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283,7 +283,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0672ce9ee5cf93443972fcc36ba11b27, type: 2}
+  - {fileID: 2100000, guid: 986f78cd4f68dda4bb0ddb98ef9ac428, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -477,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 122912342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.05, z: -0.326}
+  m_LocalPosition: {x: 0, y: 0, z: -1.089}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 216055329}
   - component: {fileID: 216055332}
   - component: {fileID: 216055330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CarCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 446173397}
   - component: {fileID: 446173396}
   - component: {fileID: 446173395}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 466860363}
   - component: {fileID: 466860365}
   - component: {fileID: 466860364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 547242428}
   - component: {fileID: 547242429}
   - component: {fileID: 547242430}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CarCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2138,7 +2138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678615349}
   - component: {fileID: 678615350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Radar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2172,13 +2172,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283a42be0300aef44b05d9453e14b11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
   Distance: 14.67
   Radius: 0.44
-  Speed: 5
-  PointSpawnSpeed: 0.3
-  Const: 0.1
+  Speed: 2
+  PointSpawnSpeed: 0.2
   Pivot: {fileID: 1115091486}
   GreenPoint: {fileID: 7867639289243499851, guid: cc6f2b1eacc135842832b1040e8259d5,
+    type: 3}
+  YellowPoint: {fileID: 7867639289243499851, guid: 5f106f80b49821943937f51788878455,
     type: 3}
   Target: {fileID: 122912342}
 --- !u!1 &702215943
@@ -2314,8 +2318,8 @@ Transform:
   m_GameObject: {fileID: 775447191}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -0, y: -0.062, z: -0.537}
-  m_LocalScale: {x: 0.109797776, y: 0.5305982, z: 0.109797776}
+  m_LocalPosition: {x: -0, y: -0.0591, z: -0.547}
+  m_LocalScale: {x: 0.02, y: 0.5413694, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115091487}
@@ -2363,7 +2367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1b6fa24e3929c8f438c6722b75011b2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2471,6 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d5cc9e3d87442429d5a1067d7aa05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 177934527}
 --- !u!1 &821786533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2594,7 @@ Transform:
   m_GameObject: {fileID: 832575517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 8.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3907,7 +3912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878663486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

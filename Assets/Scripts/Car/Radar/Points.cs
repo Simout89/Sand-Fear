@@ -10,7 +10,7 @@ public class Points : MonoBehaviour
     }
     private IEnumerator Die()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }
