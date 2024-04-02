@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -16,11 +17,12 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private PlayerCameraController CameraScript;
 
     private PlayerInput playerInput;
-    public bool UseProps { get; private set; } = false;
-    private void Awake()
+    [Inject]
+    public void Construct(PlayerInput playerInput)
     {
-        playerInput = GetComponent<PlayerInput>();
+        this.playerInput = playerInput;
     }
+    public bool UseProps { get; private set; } = false;
 
     private void Update()
     {

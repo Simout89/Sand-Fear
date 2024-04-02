@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    private PlayerInput playerInput;
 
     private CharacterController characterController;
 

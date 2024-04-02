@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
+using Zenject.SpaceFighter;
 
 public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
 {
@@ -8,15 +10,14 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
     public bool Active { get; set; }
 
     private GameObject Player;
-    private void Awake()
+
+    // Используем внедрение зависимостей для получения доступа к объекту
+    [Inject]
+    public void Construct(GameObject Player)
     {
-        Player = GameObject.Find("Player");
+        this.Player = Player;
     }
     // Update is called once per frame
-    private void Update()
-    {
-        
-    }
 
     public void ActiveHold()
     {
