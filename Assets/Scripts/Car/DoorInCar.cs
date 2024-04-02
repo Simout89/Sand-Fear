@@ -17,12 +17,24 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
     {
         this.Player = Player;
     }
+    private CarController carController;
+    [Inject]
+    public void Construct(CarController carController)
+    {
+        this.carController = carController;
+    }
     // Update is called once per frame
 
     public void ActiveHold()
     {
-        Player.GetComponent<CharacterController>().enabled = false;
-        Player.GetComponent<CharacterController>().transform.position = PointToTeleport.transform.position;
-        Player.GetComponent<CharacterController>().enabled = true;
+        if(carController.leverHorizontal.Value == 0 && (carController.leverVertical.Value == 0))
+        {
+            PlayerFog.OnPlayerFog.Invoke();
+            CarFog.OnCarFog.Invoke();
+            SoundController.onPlayerPosition.Invoke();
+            Player.GetComponent<CharacterController>().enabled = false;
+            Player.GetComponent<CharacterController>().transform.position = PointToTeleport.transform.position;
+            Player.GetComponent<CharacterController>().enabled = true;
+        }
     }
 }

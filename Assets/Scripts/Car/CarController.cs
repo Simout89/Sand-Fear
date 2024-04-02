@@ -16,8 +16,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
 
-    [SerializeField] private Lever leverVertical;
-    [SerializeField] private Lever leverHorizontal;
+    [SerializeField] public Lever leverVertical;
+    [SerializeField] public Lever leverHorizontal;
 
     private Vector3 velocity;
     private bool isGrounded;

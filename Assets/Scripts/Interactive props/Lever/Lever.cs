@@ -36,6 +36,7 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
     private void Awake()
     {
         Value = DefaultValue;
+        Handle.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(Value / MaxValue * 45, -45, 45));
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
             Value = Mathf.Clamp(Mathf.Round((Value + (playerInput.VerticalRaw / 10)) * 10f) * 0.1f, MinValue, MaxValue);
         }else
             Value = Mathf.Clamp(Mathf.Round((Value + (playerInput.HorizontalRaw / 10)) * 10f) * 0.1f, MinValue, MaxValue);
-        Handle.localRotation = Quaternion.Euler(0, 0, Value * 45);
+        Handle.localRotation = Quaternion.Euler(0, 0, Mathf.Clamp(Value/MaxValue * 45, -45, 45));
         yield return new WaitForSeconds(Sensitivity);
         isDelay = true;
     }

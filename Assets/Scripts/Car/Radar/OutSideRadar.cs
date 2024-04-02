@@ -9,6 +9,8 @@ public class OutSideRadar : MonoBehaviour
 {
     [SerializeField] private LayerMask layer;
 
+    [SerializeField] private Lever leverVertical;
+
     [SerializeField] private float Distance = 5f;
     [SerializeField] private float Radius = 1f;
     [SerializeField] private float Speed = 1f;
@@ -28,9 +30,9 @@ public class OutSideRadar : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, Distance, ~layer))
+        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, leverVertical.Value, ~layer))
         {
-            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/Distance) * -1.05f);
+            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ leverVertical.Value) * -1.05f);
             if(delay)
             {
                 if(hit.collider.gameObject.layer == 3)
