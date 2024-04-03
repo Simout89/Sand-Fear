@@ -8,8 +8,7 @@ public class PlayerInstaller : MonoInstaller
     {
         Container.Bind<PlayerInput>().FromComponentInHierarchy().AsSingle();
         Container.Bind<PlayerInteract>().FromComponentInHierarchy().AsSingle();
-        Container.Bind<CarController>().FromComponentInHierarchy().AsSingle();
-        Container.Bind<SoundController>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<PlayerLocation>().FromComponentInHierarchy().AsSingle();
         Container.BindInstance(Player).AsSingle();
     }
 }

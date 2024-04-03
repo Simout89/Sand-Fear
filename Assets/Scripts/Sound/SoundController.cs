@@ -7,9 +7,6 @@ using Zenject;
 
 public class SoundController : MonoBehaviour
 {
-    public static UnityEvent onPlayerPosition = new UnityEvent();
-
-
     [SerializeField] private AudioSource CarInEngine;
     [SerializeField] private AudioSource CarSandStorm;
     [SerializeField] private AudioSource CarEngine;
@@ -21,22 +18,22 @@ public class SoundController : MonoBehaviour
         this.carController = carController;
     }
 
-    private void Awake()
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
     {
-        onPlayerPosition.AddListener(HandlePlayerPosition);
-    }
-
-    private void HandlePlayerPosition()
-    {
-        CarEngine.mute = !CarEngine.mute;
-        CarInEngine.mute = !CarInEngine.mute;
-        CarSandStorm.mute = !CarSandStorm.mute;
-        PlayerSandStorm.mute = !PlayerSandStorm.mute;
+        this.playerLocation = playerLocation;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CarInEngine.mute = !playerLocation.Location;
+        CarSandStorm.mute = !playerLocation.Location;
+
+        PlayerSandStorm.mute = playerLocation.Location;
+        CarEngine.mute = playerLocation.Location;
+
         CarInEngine.pitch = Mathf.Clamp((Mathf.Abs(carController.leverHorizontal.Value) + Mathf.Abs(carController.leverVertical.Value) + 0.9f), 0.9f, 1.6f);
     }
 }

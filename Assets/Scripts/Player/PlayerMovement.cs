@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,17 +22,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
-    private bool inCar = true;
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
+    {
+        this.playerLocation = playerLocation;
+    }
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();
-        PlayerFog.OnPlayerFog.AddListener(HandlePlayerFog);
-    }
-
-    private void HandlePlayerFog()
-    {
-        inCar = !inCar;
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if(!inCar)
+        if(!playerLocation.Location)
         {
             if (Mathf.Abs(playerInput.Horizontal) + Mathf.Abs(playerInput.Vertical) <= 0.9)
             {

@@ -2,24 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class CarFog : MonoBehaviour
 {
-    public static UnityEvent OnCarFog = new UnityEvent();
-
-
     [SerializeField] private GameObject Fog;
-
-    private bool ActiveFog = true;
-
-    private void Awake()
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
     {
-        OnCarFog.AddListener(HandleCarFog);
+        this.playerLocation = playerLocation;
     }
 
-    private void HandleCarFog()
+    private void Update()
     {
-        ActiveFog = !ActiveFog;
-        Fog.SetActive(ActiveFog);
+        Fog.SetActive(playerLocation.Location);
     }
 }

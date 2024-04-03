@@ -19,6 +19,8 @@ public class CarController : MonoBehaviour
     [SerializeField] public Lever leverVertical;
     [SerializeField] public Lever leverHorizontal;
 
+    public bool DoorStuck = false;
+
     private Vector3 velocity;
     private bool isGrounded;
     private void Awake()

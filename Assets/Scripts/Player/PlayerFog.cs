@@ -3,24 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class PlayerFog : MonoBehaviour
 {
-    public static UnityEvent OnPlayerFog = new UnityEvent();
-
-
     [SerializeField] private GameObject Fog;
 
-    private bool ActiveFog = false;
-
-    private void Awake()
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
     {
-        OnPlayerFog.AddListener(HandlePlayerFog);
+        this.playerLocation = playerLocation;
     }
-
-    private void HandlePlayerFog()
+    private void Update()
     {
-        ActiveFog = !ActiveFog;
-        Fog.SetActive(ActiveFog);
+        Fog.SetActive(!playerLocation.Location);
     }
 }

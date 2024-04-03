@@ -15,8 +15,9 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject SliderGameObject;
     [SerializeField] private GameObject ArmSlot;
+    [SerializeField] private Transform camera;
     [SerializeField] private Slider Slider;
-
+    [SerializeField] private float Coficent = 1;
     [SerializeField] private PlayerMovement MoveScript;
     [SerializeField] private PlayerCameraController CameraScript;
 
@@ -136,15 +137,15 @@ public class PlayerInteract : MonoBehaviour
     {
 
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         PutItem();
+        Vector3 raycastDirection = transform.TransformDirection(camera.transform.forward);
 
-        if (Physics.Raycast(ray, out hit, Distance) && hit.collider.TryGetComponent(out IInteractive iInteractive))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Distance) && hit.collider.TryGetComponent(out IInteractive iInteractive))
         {
             indicator.SetActive(true);
             ValueProps(hit, iInteractive);
-            // toggle ������
+
             CollectItem(hit);
 
             HoldInteractive(hit);
@@ -176,6 +177,11 @@ public class PlayerInteract : MonoBehaviour
             MoveScript.enabled = true;
             CameraScript.enabled = true;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(camera.transform.position, camera.transform.forward * Distance);
     }
 
     private IEnumerator FillSlider(IHoldInteractive iHoldInteractive)
