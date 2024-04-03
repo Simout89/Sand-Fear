@@ -1246,7 +1246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d48b5c36858b4aa0df8b0d1ad605c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 1
+  Distance: 2
   indicator: {fileID: 821786533}
   SliderGameObject: {fileID: 396941532}
   ArmSlot: {fileID: 672860816}
