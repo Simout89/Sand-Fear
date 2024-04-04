@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - NonDetected
-  - 
+  - Fog
   - 
   - 
   - 
@@ -42,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: TransparentFX
+    uniqueID: 2311649925
+    locked: 0
+  - name: Fog
+    uniqueID: 1536004109
     locked: 0

@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     public float Vertical { get; private set; }
     public float HorizontalRaw { get; private set; }
     public float VerticalRaw { get; private set; }
-    public bool Fire { get; private set; }
+    public bool InteractButtonItems { get; private set; }
     public float MouseX { get; private set; }
     public float MouseY { get; private set; }
     public bool Jump { get; private set; }
@@ -37,5 +37,6 @@ public class PlayerInput : MonoBehaviour
         SecondInteractButton = Input.GetButtonDown("Interact2");
         EscButton = Input.GetButtonDown("Cancel");
         InteractButtonHold = Input.GetButton("Interact1");
+        InteractButtonItems = Input.GetButtonDown("Interact3");
     }
 }

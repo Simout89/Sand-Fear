@@ -68,16 +68,20 @@ public class PlayerInteract : MonoBehaviour
             if (iShelf.Item == null && (HoldItem != null)) // кладем
             {
                 iShelf.Item = HoldItem;
+                if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PShelf))
+                    iInteractiveP2PShelf.Active = false;
                 HoldItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 HoldItem.transform.position = hit.collider.transform.position;
                 HoldItem.transform.parent = hit.collider.transform;
-                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                HoldItem.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 HoldItem = null;
                 OnHoldItem.Invoke();
             }
             else if (iShelf.Item != null && (HoldItem == null)) // Забираем
             {
                 HoldItem = iShelf.Item;
+                if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PShelf))
+                    iInteractiveP2PShelf.Active = true;
                 HoldItem.transform.position = ArmSlot.transform.position;
                 HoldItem.transform.parent = ArmSlot.transform;
                 HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -87,19 +91,24 @@ public class PlayerInteract : MonoBehaviour
             }
             else if (iShelf.Item != null && (HoldItem != null))
             {
-                BufferItem = iShelf.Item;
+                BufferItem = iShelf.Item; // буффер
 
                 iShelf.Item = HoldItem;
+                if (iShelf.Item.TryGetComponent(out IInteractive iInteractiveP2PShelf))
+                    iInteractiveP2PShelf.Active = false;
                 HoldItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 HoldItem.transform.position = hit.collider.transform.position;
                 HoldItem.transform.parent = hit.collider.transform;
-                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                HoldItem.transform.localRotation = Quaternion.Euler(0, 180, 0); // кладем на полку
+
 
                 HoldItem = BufferItem;
+                if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PPlayer))
+                    iInteractiveP2PPlayer.Active = true;
                 HoldItem.transform.position = ArmSlot.transform.position;
                 HoldItem.transform.parent = ArmSlot.transform;
                 HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                HoldItem.transform.localScale = new Vector3(1f, 1f, 1f);
+                HoldItem.transform.localScale = new Vector3(1f, 1f, 1f); // забираем из буффера
 
                 BufferItem = null;
 
@@ -107,10 +116,11 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    private void CollectItem(RaycastHit hit)
+    private void CollectItem(RaycastHit hit, IInteractive iInteractive)
     {
         if (hit.collider.TryGetComponent(out ICollectable iCollectable) && (HoldItem == null) && playerInput.InteractButton)
         {
+            iInteractive.Active = true;
             iCollectable.Collect();
             hit.collider.transform.position = ArmSlot.transform.position;
             hit.collider.transform.parent = ArmSlot.transform;
@@ -124,6 +134,8 @@ public class PlayerInteract : MonoBehaviour
     {
         if (playerInput.SecondInteractButton && HoldItem)
         {
+            if (HoldItem.TryGetComponent(out IInteractive iInteractive))
+                iInteractive.Active = false;
             if (HoldItem.TryGetComponent(out ICollectable iCollectable))
                 iCollectable.Put();
             HoldItem.transform.parent = null;
@@ -144,9 +156,9 @@ public class PlayerInteract : MonoBehaviour
             indicator.SetActive(true);
             ValueProps(hit, iInteractive);
 
-            CollectItem(hit);
-
             HoldInteractive(hit);
+
+            CollectItem(hit, iInteractive);
 
             Shelf(hit);
             
