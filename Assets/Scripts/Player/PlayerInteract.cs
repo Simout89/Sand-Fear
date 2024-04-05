@@ -19,6 +19,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float Coficent = 1;
     [SerializeField] private PlayerMovement MoveScript;
     [SerializeField] private PlayerCameraController CameraScript;
+    [SerializeField] private CameraShake CameraShake;
 
 
 
@@ -182,10 +183,13 @@ public class PlayerInteract : MonoBehaviour
         {
             MoveScript.enabled = false;
             CameraScript.enabled = false;
-        }else
+            CameraShake.enabled = false;
+        }
+        else
         {
             MoveScript.enabled = true;
             CameraScript.enabled = true;
+            CameraShake.enabled = true;
         }
     }
 
