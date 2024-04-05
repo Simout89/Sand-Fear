@@ -16,6 +16,7 @@ public class OutSideRadar : MonoBehaviour
     [SerializeField] private float Speed = 1f;
     [SerializeField] private float PointSpawnSpeed = 1f;
     [SerializeField] private float PingDelaySec = 1f;
+    [SerializeField] private float DetectAngel = 1f;
 
     [SerializeField] private GameObject Pivot;
     [SerializeField] private GameObject GreenPoint;
@@ -41,8 +42,17 @@ public class OutSideRadar : MonoBehaviour
             {
                 if(hit.collider.gameObject.layer == 3)
                 {
-                    Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
-                    StartCoroutine(Delay());
+                    Vector3 surfaceNormal = hit.normal;
+                    if(Mathf.Abs(surfaceNormal.x) > DetectAngel) // реяр
+                    {
+                        Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
+                        StartCoroutine(Delay());
+                    }
+
+
+
+
+
                 }else
                 {
                     if(pingDelay)
