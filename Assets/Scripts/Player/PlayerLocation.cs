@@ -8,7 +8,7 @@ public class PlayerLocation : MonoBehaviour
 {
     public static UnityEvent onPlayerPosition = new UnityEvent();
 
-    public bool Location { get; private set; } = true;
+    public bool Location { get; private set; } = true; // true = car, false = world
 
     private void Awake()
     {
