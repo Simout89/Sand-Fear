@@ -62,6 +62,7 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
+
     private void Shelf(RaycastHit hit)
     {
         if (hit.collider.TryGetComponent(out IShelf iShelf) && playerInput.InteractButton)
@@ -71,9 +72,14 @@ public class PlayerInteract : MonoBehaviour
                 iShelf.Item = HoldItem;
                 if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PShelf))
                     iInteractiveP2PShelf.Active = false;
-                HoldItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                HoldItem.transform.position = hit.collider.transform.position;
+
                 HoldItem.transform.parent = hit.collider.transform;
+                if (HoldItem.TryGetComponent(out ICollectable iCollectable))
+                {
+                    HoldItem.transform.localScale = iCollectable.ShelfScale;
+                    HoldItem.transform.localPosition = iCollectable.ShelfPos;
+                }
+                HoldItem.transform.parent = hit.collider.transform; 
                 HoldItem.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 HoldItem = null;
                 OnHoldItem.Invoke();
@@ -83,10 +89,13 @@ public class PlayerInteract : MonoBehaviour
                 HoldItem = iShelf.Item;
                 if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PShelf))
                     iInteractiveP2PShelf.Active = true;
-                HoldItem.transform.position = ArmSlot.transform.position;
                 HoldItem.transform.parent = ArmSlot.transform;
+                if (HoldItem.TryGetComponent(out ICollectable iCollectable))
+                {
+                    HoldItem.transform.localPosition = iCollectable.PlayerPos;
+                    HoldItem.transform.localScale = iCollectable.PlayerScale;
+                }
                 HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                HoldItem.transform.localScale = new Vector3(1f, 1f, 1f);
                 iShelf.Item = null;
                 OnHoldItem.Invoke();
             }
@@ -97,19 +106,26 @@ public class PlayerInteract : MonoBehaviour
                 iShelf.Item = HoldItem;
                 if (iShelf.Item.TryGetComponent(out IInteractive iInteractiveP2PShelf))
                     iInteractiveP2PShelf.Active = false;
-                HoldItem.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                HoldItem.transform.position = hit.collider.transform.position;
                 HoldItem.transform.parent = hit.collider.transform;
+                if (HoldItem.TryGetComponent(out ICollectable iCollectableShelf))
+                {
+                    HoldItem.transform.localScale = iCollectableShelf.ShelfScale;
+                    HoldItem.transform.localPosition = iCollectableShelf.ShelfPos;
+                }
                 HoldItem.transform.localRotation = Quaternion.Euler(0, 180, 0); // кладем на полку
 
 
                 HoldItem = BufferItem;
                 if (HoldItem.TryGetComponent(out IInteractive iInteractiveP2PPlayer))
                     iInteractiveP2PPlayer.Active = true;
-                HoldItem.transform.position = ArmSlot.transform.position;
+
                 HoldItem.transform.parent = ArmSlot.transform;
-                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                HoldItem.transform.localScale = new Vector3(1f, 1f, 1f); // забираем из буффера
+                if (HoldItem.TryGetComponent(out ICollectable iCollectable))
+                {
+                    HoldItem.transform.localPosition = iCollectable.PlayerPos;
+                    HoldItem.transform.localScale = iCollectable.PlayerScale;
+                }
+                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0); // забираем из буффера
 
                 BufferItem = null;
 
@@ -123,8 +139,8 @@ public class PlayerInteract : MonoBehaviour
         {
             iInteractive.Active = true;
             iCollectable.Collect();
-            hit.collider.transform.position = ArmSlot.transform.position;
             hit.collider.transform.parent = ArmSlot.transform;
+            hit.collider.transform.localPosition = iCollectable.PlayerPos;
             hit.collider.transform.localRotation = Quaternion.Euler(0, 0, 0);
             HoldItem = hit.collider.gameObject;
             OnHoldItem.Invoke();

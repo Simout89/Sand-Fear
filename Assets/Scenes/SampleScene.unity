@@ -593,6 +593,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea1ca5a83335ac4f84af7de1be4b02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScale: {x: 1, y: 1, z: 1}
+  playerPos: {x: 1, y: 1, z: 1}
+  shelfScale: {x: 1, y: 1, z: 1}
+  shelfPos: {x: 1, y: 1, z: 1}
 --- !u!54 &97083792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7547,6 +7551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea1ca5a83335ac4f84af7de1be4b02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScale: {x: 1, y: 1, z: 1}
+  playerPos: {x: 0, y: 0, z: 0}
+  shelfScale: {x: 1, y: 1, z: 1}
+  shelfPos: {x: 0, y: 0, z: 0}
 --- !u!65 &1538984297
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8400,11 +8408,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1788279499}
-  - component: {fileID: 1788279502}
   - component: {fileID: 1788279503}
   - component: {fileID: 1788279501}
   - component: {fileID: 1788279500}
   - component: {fileID: 1788279504}
+  - component: {fileID: 1788279505}
   m_Layer: 0
   m_Name: Pleer
   m_TagString: Untagged
@@ -8476,18 +8484,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1788279502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788279498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea1ca5a83335ac4f84af7de1be4b02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1788279503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8596,6 +8592,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1788279505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788279498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea1ca5a83335ac4f84af7de1be4b02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScale: {x: 1, y: 1, z: 1}
+  playerPos: {x: 0, y: 0, z: 0}
+  shelfScale: {x: 1, y: 1, z: 1}
+  shelfPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1790568175
 GameObject:
   m_ObjectHideFlags: 0
