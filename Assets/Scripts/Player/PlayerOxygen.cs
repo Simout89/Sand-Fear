@@ -10,7 +10,7 @@ using Zenject;
 public class PlayerOxygen : MonoBehaviour
 {
     [SerializeField] private VolumeProfile volume;
-
+    [SerializeField] private BrokenPartSlot BrokenPartSlot;
 
     [SerializeField] private float MaxOxygen = 40;
     [SerializeField] private float Speed = 1f;
@@ -31,7 +31,7 @@ public class PlayerOxygen : MonoBehaviour
 
     private void Update()
     {
-        if(playerLocation.Location == true)
+        if(playerLocation.Location == true && (BrokenPartSlot.Works))
         {
             if(Oxygen <= MaxOxygen)
             {

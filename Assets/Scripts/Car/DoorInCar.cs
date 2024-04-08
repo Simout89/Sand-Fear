@@ -14,7 +14,6 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
 
     [Header("RayCast")]
     [SerializeField] private float Distance = 5f;
-    [SerializeField] private float Radius = 1f;
     [SerializeField] private Transform StartPos;
     [SerializeField] private LayerMask layerMask;
     private AudioSource audioSource;
@@ -22,7 +21,6 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
 
 
     private GameObject Player;
-    private bool DoorStuck = false;
     enum Location
     {
         inside,

@@ -9,7 +9,6 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
     [SerializeField] private float MaxValue = 1f;
     [SerializeField] private float MinValue = 0f;
     [SerializeField] private float DefaultValue = 0f;
-    [SerializeField] private float Step = 0.1f;
     [SerializeField] private float Sensitivity = 0f;
     [SerializeField] private Orientation orientation = Orientation.Vertical;
     [Header("GameObject")]

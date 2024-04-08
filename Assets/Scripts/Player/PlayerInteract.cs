@@ -16,7 +16,6 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private GameObject SliderGameObject;
     [SerializeField] private GameObject ArmSlot;
     [SerializeField] private Slider Slider;
-    [SerializeField] private float Coficent = 1;
     [SerializeField] private PlayerMovement MoveScript;
     [SerializeField] private PlayerCameraController CameraScript;
     [SerializeField] private CameraShake CameraShake;

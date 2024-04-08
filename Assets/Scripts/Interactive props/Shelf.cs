@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour,IInteractive,IShelf
 {
+    [SerializeField] private GameObject StartItem = null;
     public bool Active { get; set; }
     public GameObject Item { get; set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
+        if (StartItem != null)
+        {
+            Item = Instantiate(StartItem, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+            if (Item.TryGetComponent(out ICollectable iCollectable))
+            {
+                iCollectable.Collect();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            }
+        }
     }
 }

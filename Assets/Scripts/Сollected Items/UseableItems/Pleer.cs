@@ -16,6 +16,7 @@ public class Pleer : MonoBehaviour
     {
         this.playerInput = playerInput;
     }
+    
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();

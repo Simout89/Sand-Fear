@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemValue : MonoBehaviour
 {
     [SerializeField] public ItemType type;
-    [SerializeField] private float StartValue = 1f;
+    [SerializeField] public float StartValue = 1f;
     [ReadOnly] public float Value;
 
     private void Awake()
@@ -16,6 +16,7 @@ public class ItemValue : MonoBehaviour
 
     public enum ItemType
     {
-        filter
+        filter,
+        radarBoard
     }
 }

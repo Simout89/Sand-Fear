@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
     {
         if(playerInput.EscButton)
         {
-            Menu.SetActive(!Menu.active);
+            Menu.SetActive(!Menu.activeSelf);
         }
     }
 
