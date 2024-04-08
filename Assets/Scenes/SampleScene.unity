@@ -3166,7 +3166,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -3706,7 +3706,7 @@ AudioSource:
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -9117,10 +9117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134e5e03a81ca4a468294a3341513988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InCarSound: {fileID: 1518603901}
+  OutCarSound: {fileID: 1871797188}
   CarInEngine: {fileID: 266970702}
-  CarSandStorm: {fileID: 955995374}
-  CarEngine: {fileID: 942251694}
-  PlayerSandStorm: {fileID: 576162937}
 --- !u!1 &1744184742
 GameObject:
   m_ObjectHideFlags: 0
