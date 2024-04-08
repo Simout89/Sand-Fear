@@ -12,6 +12,9 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource CarEngine;
     [SerializeField] private AudioSource PlayerSandStorm;
     private CarController carController;
+
+
+
     [Inject]
     public void Construct(CarController carController)
     {
