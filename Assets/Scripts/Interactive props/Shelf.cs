@@ -8,6 +8,10 @@ public class Shelf : MonoBehaviour,IInteractive,IShelf
     public bool Active { get; set; }
     public GameObject Item { get; set; }
 
+    public void Activate()
+    {
+    }
+
     private void Awake()
     {
         if (StartItem != null)

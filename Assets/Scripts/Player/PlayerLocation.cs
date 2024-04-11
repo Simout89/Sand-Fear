@@ -6,17 +6,26 @@ using UnityEngine.Events;
 
 public class PlayerLocation : MonoBehaviour
 {
-    public static UnityEvent onPlayerPosition = new UnityEvent();
 
-    public bool Location { get; private set; } = true; // true = car, false = world
+    public static UnityEvent<Locations> onPlayerPosition = new UnityEvent<Locations>();
+
+    public Locations Location = Locations.Car; // true = car, false = world
 
     private void Awake()
     {
         onPlayerPosition.AddListener(HandlePlayerPosition);
     }
 
-    private void HandlePlayerPosition()
+    private void HandlePlayerPosition(Locations locations)
     {
-        Location = !Location;
+        Location = locations;
+    }
+
+    public enum Locations
+    {
+        World,
+        Car,
+        House,
+        CutScene
     }
 }

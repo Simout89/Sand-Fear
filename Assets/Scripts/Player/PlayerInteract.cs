@@ -37,9 +37,10 @@ public class PlayerInteract : MonoBehaviour
 
     private void ValueProps(RaycastHit hit, IInteractive iInteractive)
     {
-        if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps))
+        if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps) && (HoldItem == null))
         {
             iInteractive.Active = !iInteractive.Active;
+            iInteractive.Activate();
             UseProps = !UseProps;
             LockMove();
         }
@@ -177,7 +178,7 @@ public class PlayerInteract : MonoBehaviour
             CollectItem(hit, iInteractive);
 
             Shelf(hit);
-            
+
         }
         else
         {

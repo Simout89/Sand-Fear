@@ -18,6 +18,10 @@ public class PlayerFog : MonoBehaviour
     }
     private void Update()
     {
-        Fog.SetActive(!playerLocation.Location);
+        if(playerLocation.Location == PlayerLocation.Locations.World)
+        {
+            Fog.SetActive(true);
+        }else
+            Fog.SetActive(false);
     }
 }

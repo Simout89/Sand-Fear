@@ -31,7 +31,7 @@ public class PlayerOxygen : MonoBehaviour
 
     private void Update()
     {
-        if(playerLocation.Location == true && (BrokenPartSlot.Works))
+        if(((playerLocation.Location == PlayerLocation.Locations.Car) && (BrokenPartSlot.Works)) || (playerLocation.Location == PlayerLocation.Locations.CutScene) || (playerLocation.Location == PlayerLocation.Locations.House))
         {
             if(Oxygen <= MaxOxygen)
             {

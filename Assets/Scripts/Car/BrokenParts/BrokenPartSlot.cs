@@ -66,4 +66,8 @@ public class BrokenPartSlot : MonoBehaviour, IInteractive, IShelf, IBrokenParts
             scr.enabled = Works;
         }
     }
+
+    public void Activate()
+    {
+    }
 }

@@ -14,7 +14,6 @@ public class BrokenPartDisplay : MonoBehaviour
 
     private void Update()
     {
-
         for (int i = 0; i < Lamps.Length; i++)
         {
             if (BrokenPart.TryGetComponent(out IBrokenParts iBrokenParts) && (i < ((iBrokenParts.Value / iBrokenParts.MaxValue) * Lamps.Length)))

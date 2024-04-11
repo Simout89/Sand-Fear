@@ -16,7 +16,10 @@ public class AirFilterSlot : MonoBehaviour, IInteractive, IShelf, IBrokenParts
     public float Value { get; set; }
     public bool Works { get; set; } = false;
 
-
+    public void Activate()
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void Awake()
     {

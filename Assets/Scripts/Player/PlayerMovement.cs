@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if(!playerLocation.Location)
+        if(playerLocation.Location == PlayerLocation.Locations.World)
         {
             if (Mathf.Abs(playerInput.Horizontal) + Mathf.Abs(playerInput.Vertical) <= 0.9)
             {

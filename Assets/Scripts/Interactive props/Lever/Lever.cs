@@ -62,6 +62,10 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
         isDelay = true;
     }
 
+    public void Activate()
+    {
+    }
+
     enum Orientation
     {
         Horizontal,

@@ -38,4 +38,9 @@ public class Item : MonoBehaviour,IInteractive,ICollectable
         rigidBody.isKinematic = false;
         gameObject.GetComponent<BoxCollider>().enabled = true;
     }
+
+    public void Activate()
+    {
+
+    }
 }
