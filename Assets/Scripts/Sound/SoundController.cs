@@ -36,6 +36,6 @@ public class SoundController : MonoBehaviour
 
         
 
-        CarInEngine.pitch = Mathf.Clamp((Mathf.Abs(carController.leverHorizontal.Value) + Mathf.Abs(carController.leverVertical.Value) + 0.9f), 0.9f, 1.6f);
+        CarInEngine.pitch = Mathf.Lerp(0.9f,1.6f, (Mathf.Abs(carController.leverHorizontal.Value) + Mathf.Abs(carController.leverVertical.Value)));
     }
 }

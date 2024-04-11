@@ -8560,7 +8560,7 @@ GameObject:
   - component: {fileID: 1621085174}
   - component: {fileID: 1621085175}
   m_Layer: 0
-  m_Name: Music
+  m_Name: MusicGlobal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8574,12 +8574,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621085173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1871797189}
+  m_Father: {fileID: 1743983640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1621085175
 AudioSource:
@@ -8591,7 +8591,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ed58b14509b204d4daf2a2646cf1b4e8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9103,6 +9103,7 @@ Transform:
   m_Children:
   - {fileID: 1518603902}
   - {fileID: 1871797189}
+  - {fileID: 1621085174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1743983641
@@ -10113,7 +10114,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 576162936}
-  - {fileID: 1621085174}
   m_Father: {fileID: 1743983640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878663485
