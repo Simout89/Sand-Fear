@@ -30,7 +30,13 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
             if (Active)
                 uIController.OpenNote(text);
             else
+            {
+                Player.GetComponent<CharacterController>().enabled = false;
+                Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
+                Player.GetComponent<CharacterController>().enabled = true;
+                CutSceneState.onCutScene.Invoke();
                 uIController.CloseNote();
+            }
         }else
         {
             if (Active)
@@ -38,10 +44,6 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
             else
             {
                 uIController.CloseNewspaper();
-                Player.GetComponent<CharacterController>().enabled = false;
-                Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
-                Player.GetComponent<CharacterController>().enabled = true;
-                CutSceneState.onCutScene.Invoke();
             }
         }
     }

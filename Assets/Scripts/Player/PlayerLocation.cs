@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerLocation : MonoBehaviour
 {
 
-    public static UnityEvent<Locations> onPlayerPosition = new UnityEvent<Locations>();
+    public static UnityEvent<Locations> onPlayerPosition = new UnityEvent<Locations>(); // оепедекюрэ
 
     public Locations Location = Locations.Car; // true = car, false = world
 

@@ -20,11 +20,11 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private PlayerCameraController CameraScript;
     [SerializeField] private CameraShake CameraShake;
 
-
+    
 
     private GameObject HoldItem = null;
     private GameObject BufferItem = null;
-
+    public GameObject RayTarget = null;
 
     private bool DelaySlider = true;
     public bool UseProps { get; private set; } = false;
@@ -161,6 +161,15 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
+    private void Button(IInteractive iInteractive, RaycastHit hit)
+    {
+        if(hit.collider.TryGetComponent(out IButton iButton))
+        {
+            UseProps = playerInput.InteractButtonHold;
+        }
+
+    }
+
     private void Update()
     {
 
@@ -179,9 +188,13 @@ public class PlayerInteract : MonoBehaviour
 
             Shelf(hit);
 
+            Button(iInteractive, hit);
+
+            RayTarget = hit.collider.gameObject;
         }
         else
         {
+            RayTarget = null;
             indicator.SetActive(false);
             UseProps = false;
             Slider.value = 0;

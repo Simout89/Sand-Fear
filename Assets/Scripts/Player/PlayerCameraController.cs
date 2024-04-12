@@ -12,7 +12,7 @@ public class PlayerCameraController : MonoBehaviour
     private float mouseX;
     private float mouseY;
 
-    private float xRotation = 0f;
+    private float xRotation;
 
     private bool HoldItem = false;
 

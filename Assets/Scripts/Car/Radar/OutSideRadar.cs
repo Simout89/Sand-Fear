@@ -48,11 +48,6 @@ public class OutSideRadar : MonoBehaviour
                         Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
                         StartCoroutine(Delay());
                     }
-
-
-
-
-
                 }else
                 {
                     if(pingDelay)

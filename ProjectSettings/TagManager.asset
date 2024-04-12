@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ship
   - asteroid
+  - Stash
+  - DropPlace
   layers:
   - Default
   - TransparentFX

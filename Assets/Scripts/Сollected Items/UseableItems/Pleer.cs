@@ -17,12 +17,12 @@ public class Pleer : MonoBehaviour
         this.playerInput = playerInput;
     }
     
-    private void Awake()
+    private void Awake() 
     {
         audioSource = GetComponent<AudioSource>();
         item = GetComponent<Item>();
     }
-    private void Update()
+    private void Update() // оепедекюрэ б тсмйжхх
     {
         if(playerInput.InteractButtonItems && item.Active)
         {

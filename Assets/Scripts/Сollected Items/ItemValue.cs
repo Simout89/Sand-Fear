@@ -7,7 +7,7 @@ public class ItemValue : MonoBehaviour
 {
     [SerializeField] public ItemType type;
     [SerializeField] public float StartValue = 1f;
-    [ReadOnly] public float Value;
+    [ShowOnly] public float Value;
 
     private void Awake()
     {

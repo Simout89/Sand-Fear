@@ -3,7 +3,7 @@ using Zenject;
 
 public class PlayerInstaller : MonoInstaller
 {
-    public GameObject Player;
+    [SerializeField] GameObject Player;
     public override void InstallBindings()
     {
         Container.Bind<PlayerInput>().FromComponentInHierarchy().AsSingle();

@@ -17,17 +17,11 @@ public class PlayerInput : MonoBehaviour
     public bool SecondInteractButton { get; private set; }
     public bool InteractButtonHold { get; private set; }
     public bool EscButton { get; private set; }
-    //public static UnityEvent<bool> OnInputState = new UnityEvent<bool>();
-    private void Awake()
-    {
-
-    }
 
     private void Update()
     {
         HorizontalRaw = Input.GetAxisRaw("Horizontal");
         VerticalRaw = Input.GetAxisRaw("Vertical");
-
         MouseX = Input.GetAxis("Mouse X");
         MouseY = Input.GetAxis("Mouse Y");
         Vertical = Input.GetAxis("Vertical");

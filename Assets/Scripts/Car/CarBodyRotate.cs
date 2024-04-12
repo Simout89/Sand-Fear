@@ -18,7 +18,9 @@ public class CarBodyRotate : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit hit;
-        if (((carController.leverVertical.Value == 0) && (carController.leverHorizontal.Value == 0)) && Physics.Raycast(transform.position, -transform.up, out hit))
+        if (((carController.leverVertical.Value == 0)
+            && (carController.leverHorizontal.Value == 0))
+            && Physics.Raycast(transform.position, -transform.up, out hit))
         {
             Vector3 surfaceNormal = hit.normal;
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, surfaceNormal) * transform.rotation;
