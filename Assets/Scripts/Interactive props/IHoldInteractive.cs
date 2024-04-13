@@ -1,0 +1,4 @@
+interface IHoldInteractive
+{
+    void ActiveHold();
+}
