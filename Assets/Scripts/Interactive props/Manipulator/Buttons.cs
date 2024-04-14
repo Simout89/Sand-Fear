@@ -1,10 +1,11 @@
 using UnityEngine;
 using Zenject;
 
-public class Buttons : MonoBehaviour,IButton
+public class Buttons : MonoBehaviour,IButton,IInteractive
 {
     [SerializeField] private Transform ButtonBody;
     public bool Hold { get; set; }
+    public bool Active { get; set; }
 
     private Vector3 startPos;
 
@@ -32,4 +33,6 @@ public class Buttons : MonoBehaviour,IButton
         ButtonBody.transform.localPosition = startPos;
         Hold = false;
     }
+
+    public void Activate() { }
 }

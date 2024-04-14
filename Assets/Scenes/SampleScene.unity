@@ -1163,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 177934527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.214059, y: -37.844, z: 41.172226}
+  m_LocalPosition: {x: -16.294743, y: -65.5, z: -15.440773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1267,7 +1267,6 @@ MonoBehaviour:
   MoveScript: {fileID: 177934532}
   CameraScript: {fileID: 177934531}
   CameraShake: {fileID: 177934537}
-  RayTarget: {fileID: 0}
 --- !u!114 &177934534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,7 +1881,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -2563,7 +2562,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 1.38
@@ -3442,7 +3441,7 @@ Transform:
   m_GameObject: {fileID: 463541840}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000019797115, y: 0.944181, z: 0.329427, w: 0.00000009685753}
-  m_LocalPosition: {x: 3.7361, y: 0.6069, z: -4.3234}
+  m_LocalPosition: {x: 3.7491, y: 0.6069, z: -4.3234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5371,7 +5370,7 @@ Transform:
   m_GameObject: {fileID: 697854941}
   serializedVersion: 2
   m_LocalRotation: {x: -0.944181, y: 0, z: 0, w: 0.32942703}
-  m_LocalPosition: {x: 3.7361, y: 0.67689997, z: -4.267202}
+  m_LocalPosition: {x: 3.7491, y: 0.67689997, z: -4.267202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5566,7 +5565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   TeleportTarget: {fileID: 0}
-  text: "\u0417\u0430\u043F\u0438\u0441\u043A\u04302"
+  noteScriptableObject: {fileID: 11400000, guid: c40b074465953a84687e5ebcb46b94c9,
+    type: 2}
 --- !u!65 &755158259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8848,7 +8848,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   TeleportTarget: {fileID: 0}
-  text: "\u0417\u0430\u043F\u0438\u0441\u043A\u04303"
+  noteScriptableObject: {fileID: 11400000, guid: c40b074465953a84687e5ebcb46b94c9,
+    type: 2}
 --- !u!65 &1324064138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9965,9 +9966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   TeleportTarget: {fileID: 1715198366}
-  text: "\u0422\u043E\u0442\u0430 \u0442\u043E\u0442\u0430 \u0442\u0430\u043C \u0442\u0430\u043C
-    \u0442\u0430\u043C \u0431\u044B\u043B\u043E \u041E\u041E\u041E\u041E\u041E\u0413\u041E\u0413\u041E\u0413\u041E\u0413\u041E\u0413\u041E
-    \u0427\u0422\u041E"
+  noteScriptableObject: {fileID: 11400000, guid: 41a479eefac994949a7a7370e0f610b6,
+    type: 2}
 --- !u!65 &1500811881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13180,7 +13180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   TeleportTarget: {fileID: 0}
-  text: "\u0417\u0430\u043F\u0438\u0441\u043A\u04301"
+  noteScriptableObject: {fileID: 11400000, guid: c40b074465953a84687e5ebcb46b94c9,
+    type: 2}
 --- !u!65 &1917215636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14783,7 +14784,7 @@ GameObject:
   - component: {fileID: 5334037118744552131}
   - component: {fileID: 4539702728847801884}
   - component: {fileID: 70754359}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

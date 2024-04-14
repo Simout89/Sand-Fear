@@ -5,7 +5,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
 {
     [SerializeField] private Type type;
     [SerializeField] private Transform TeleportTarget;
-    [SerializeField] private string text;
+    [SerializeField] private NoteScriptableObject noteScriptableObject;
     public bool Active { get; set; } = false;
     public float Value { get; set; }
 
@@ -26,7 +26,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
         if(type == Type.Note)
         {
             if (Active)
-                uIController.OpenNote(text);
+                uIController.OpenNote(noteScriptableObject.Text);
             else
             {
                 Player.GetComponent<CharacterController>().enabled = false;
@@ -38,7 +38,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
         }else
         {
             if (Active)
-                uIController.OpenNewspaper(text);
+                uIController.OpenNewspaper(noteScriptableObject.Text);
             else
             {
                 uIController.CloseNewspaper();

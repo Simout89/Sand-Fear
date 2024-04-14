@@ -165,7 +165,13 @@ public class PlayerInteract : MonoBehaviour
         {
             if (playerInput.InteractButtonHold)
             {
-                BufferButton = hit.collider.gameObject;
+                if(BufferButton == null)
+                    BufferButton = hit.collider.gameObject;
+                else
+                {
+                    BufferButton.GetComponent<IButton>().Relize();
+                    BufferButton = hit.collider.gameObject;
+                }
                 iButton.Press();
             }
             else
@@ -185,7 +191,10 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Distance))
         {
-            indicator.SetActive(true);
+            if(hit.collider.TryGetComponent(out IInteractive interactive))
+                indicator.SetActive(true);
+            else
+                indicator.SetActive(false);
             ValueProps(hit);
 
             HoldInteractive(hit);
