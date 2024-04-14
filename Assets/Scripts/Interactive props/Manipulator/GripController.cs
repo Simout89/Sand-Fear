@@ -1,42 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GripController : MonoBehaviour
 {
-    [SerializeField] private Transform Center;
-    [SerializeField] private Transform CenterItem;
-    [SerializeField] private Buttons RedButton;
-    [SerializeField] private Lamp lamp;
-    private GameObject HoldObject = null;
+    [SerializeField] private Transform _center;
+    [SerializeField] private Buttons _redButton;
+    [SerializeField] private Lamp _lamp;
+    private GameObject _holdObject = null;
+    private bool _dropReady = false;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(Center.position, -transform.forward * 1);
+        Gizmos.DrawRay(_center.position, -transform.forward * 1);
     }
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Center.position, -transform.forward, out hit, 1) && ((hit.collider.tag == "Stash") || (hit.collider.tag == "DropPlace")))
+        if ((Physics.Raycast(_center.position, -transform.forward, out hit, 1) && hit.collider.tag == "Stash") || _dropReady)
         {
-            lamp.OnLamp();
-            if (RedButton.Hold && hit.collider.TryGetComponent(out Stash stash) && (HoldObject == null) && (hit.collider.tag == "Stash"))
+            if((_dropReady && _holdObject) || (hit.collider.tag == "Stash" && !_holdObject))
             {
-                HoldObject = Instantiate(stash.Prefab, CenterItem.transform.position, Quaternion.Euler(-90f,0,0), gameObject.transform);
+                _lamp.OnLamp();
+            }else
+                _lamp.OffLamp();
+            if (_redButton.Hold && (_holdObject == null) && hit.collider.TryGetComponent(out Stash stash))
+            {
+                _holdObject = Instantiate(stash.Prefab, _center.transform.position, Quaternion.Euler(-90f, 0, 0), gameObject.transform);
                 stash.Next();
             }
-            if(HoldObject != null && (hit.collider.tag == "DropPlace") && RedButton.Hold)
+            if (_holdObject != null && _dropReady && _redButton.Hold)
             {
-                HoldObject.transform.parent = null;
-                if(HoldObject.TryGetComponent(out Rigidbody rigidbody))
+                if (_holdObject.TryGetComponent(out Rigidbody rigidbody))
                     rigidbody.isKinematic = false;
-                HoldObject = null;
+                _holdObject.transform.parent = null;
+                _holdObject = null;
             }
-        }else
+        }
+        else
         {
-            lamp.OffLamp();
+            _lamp.OffLamp();
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DropPlace")
+        {
+            _dropReady = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "DropPlace")
+        {
+            _dropReady = false;
         }
     }
 }

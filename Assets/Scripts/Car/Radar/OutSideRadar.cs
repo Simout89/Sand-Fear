@@ -1,9 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class OutSideRadar : MonoBehaviour
 {
