@@ -1,32 +1,23 @@
 using UnityEngine;
 using Zenject;
 
-public class Pleer : MonoBehaviour
+public class Pleer : MonoBehaviour, IUseableItem
 {
 
     private bool Playing = false;
     private AudioSource audioSource;
-    private PlayerInput playerInput;
-    private Item item;
 
-    [Inject]
-    public void Construct(PlayerInput playerInput)
+    public bool Active { get; set; }
+
+    public void Use()
     {
-        this.playerInput = playerInput;
+        Playing = !Playing;
+        SoundPlay();
     }
-    
+
     private void Awake() 
     {
         audioSource = GetComponent<AudioSource>();
-        item = GetComponent<Item>();
-    }
-    private void Update() // œ≈–≈ƒ≈À¿“‹ ¬ ‘”Õ ÷»»
-    {
-        if(playerInput.InteractButtonItems && item.Active)
-        {
-            Playing = !Playing;
-            SoundPlay();
-        }
     }
 
     private void SoundPlay()

@@ -26,14 +26,18 @@ public class SoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerLocation.Location == PlayerLocation.Locations.Car)
+        switch (playerLocation.GetLocation())
         {
-            OutCarSound.SetActive(false);
-            InCarSound.SetActive(true);
-        }else
-        {
-            OutCarSound.SetActive(true);
-            InCarSound.SetActive(false);
+            case PlayerLocation.Locations.Car:
+                {
+                    OutCarSound.SetActive(false);
+                    InCarSound.SetActive(true);
+                };break;
+            case PlayerLocation.Locations.World:
+                {
+                    OutCarSound.SetActive(true);
+                    InCarSound.SetActive(false);
+                };break;
         }
 
         

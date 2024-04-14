@@ -85,10 +85,10 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
         if((carController.leverHorizontal.Value == 0 && (carController.leverVertical.Value == 0)) && (!carController.DoorStuck))
         {
             audioSource.PlayOneShot(DoorSound);
-            if(playerLocation.Location == PlayerLocation.Locations.World)
-                playerLocation.Location = PlayerLocation.Locations.Car;
+            if(playerLocation.GetLocation() == PlayerLocation.Locations.World)
+                playerLocation.SetLocation(PlayerLocation.Locations.Car);
             else
-                playerLocation.Location = PlayerLocation.Locations.World;
+                playerLocation.SetLocation(PlayerLocation.Locations.World);
             Player.GetComponent<CharacterController>().enabled = false;
             Player.GetComponent<CharacterController>().transform.position = PointToTeleport.transform.position;
             Player.GetComponent<CharacterController>().enabled = true;

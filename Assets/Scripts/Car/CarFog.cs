@@ -13,7 +13,7 @@ public class CarFog : MonoBehaviour
 
     private void Update()
     {
-        if(playerLocation.Location == PlayerLocation.Locations.Car)
+        if(playerLocation.GetLocation() == PlayerLocation.Locations.Car)
         {
             Fog.SetActive(true);
         }else

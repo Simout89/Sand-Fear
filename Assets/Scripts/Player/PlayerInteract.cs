@@ -22,7 +22,7 @@ public class PlayerInteract : MonoBehaviour
 
     private GameObject HoldItem = null;
     private GameObject BufferItem = null;
-    public GameObject RayTarget = null;
+    private GameObject BufferButton = null;
 
     private bool DelaySlider = true;
     public bool UseProps { get; private set; } = false;
@@ -33,9 +33,9 @@ public class PlayerInteract : MonoBehaviour
         this.playerInput = playerInput;
     }
 
-    private void ValueProps(RaycastHit hit, IInteractive iInteractive)
+    private void ValueProps(RaycastHit hit)
     {
-        if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps) && (HoldItem == null))
+        if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps) && (HoldItem == null) && hit.collider.TryGetComponent(out IInteractive iInteractive))
         {
             iInteractive.Active = !iInteractive.Active;
             iInteractive.Activate();
@@ -131,9 +131,9 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    private void CollectItem(RaycastHit hit, IInteractive iInteractive)
+    private void CollectItem(RaycastHit hit)
     {
-        if (hit.collider.TryGetComponent(out ICollectable iCollectable) && (HoldItem == null) && playerInput.InteractButton)
+        if (hit.collider.TryGetComponent(out ICollectable iCollectable) && (HoldItem == null) && playerInput.InteractButton&& hit.collider.TryGetComponent(out IInteractive iInteractive))
         {
             iInteractive.Active = true;
             iCollectable.Collect();
@@ -159,13 +159,21 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    private void Button(IInteractive iInteractive, RaycastHit hit)
+    private void Button(RaycastHit hit)
     {
-        if(hit.collider.TryGetComponent(out IButton iButton))
+        if (hit.collider.TryGetComponent(out IButton iButton))
         {
-            UseProps = playerInput.InteractButtonHold;
+            if (playerInput.InteractButtonHold)
+            {
+                BufferButton = hit.collider.gameObject;
+                iButton.Press();
+            }
+            else
+            {
+                BufferButton = hit.collider.gameObject;
+                iButton.Relize();
+            }
         }
-
     }
 
     private void Update()
@@ -175,24 +183,28 @@ public class PlayerInteract : MonoBehaviour
 
         PutItem();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Distance) && hit.collider.TryGetComponent(out IInteractive iInteractive))
+        if (Physics.Raycast(ray, out hit, Distance))
         {
             indicator.SetActive(true);
-            ValueProps(hit, iInteractive);
+            ValueProps(hit);
 
             HoldInteractive(hit);
 
-            CollectItem(hit, iInteractive);
+            CollectItem(hit);
 
             Shelf(hit);
 
-            Button(iInteractive, hit);
+            Button(hit);
 
-            RayTarget = hit.collider.gameObject;
+
+            if ((BufferButton != null && !playerInput.InteractButtonHold) || (playerInput.InteractButtonHold && (BufferButton != null) && hit.collider.gameObject != BufferButton))
+            {
+                BufferButton.GetComponent<IButton>().Relize();
+                BufferButton = null;
+            }
         }
         else
         {
-            RayTarget = null;
             indicator.SetActive(false);
             UseProps = false;
             Slider.value = 0;
@@ -202,6 +214,14 @@ public class PlayerInteract : MonoBehaviour
             SliderGameObject.SetActive(false);
         else
             SliderGameObject.SetActive(true);
+
+
+
+
+        if(playerInput.InteractButtonItems && HoldItem && HoldItem.TryGetComponent(out IUseableItem iUseableItem))
+        {
+            iUseableItem.Use();
+        }
     }
 
     private void LockMove()

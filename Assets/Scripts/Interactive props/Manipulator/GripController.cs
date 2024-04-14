@@ -15,13 +15,13 @@ public class GripController : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if ((Physics.Raycast(_center.position, -transform.forward, out hit, 1) && hit.collider.tag == "Stash") || _dropReady)
+        if ((Physics.Raycast(_center.position, -transform.forward, out hit, 1) && hit.collider.CompareTag("Stash")) || (_dropReady && _holdObject != null))
         {
-            if((_dropReady && _holdObject) || (hit.collider.tag == "Stash" && !_holdObject))
-            {
+            if((_dropReady && (_holdObject != null)) || (hit.collider.CompareTag("Stash") && (_holdObject == null)))
                 _lamp.OnLamp();
-            }else
+            else
                 _lamp.OffLamp();
+
             if (_redButton.Hold && (_holdObject == null) && hit.collider.TryGetComponent(out Stash stash))
             {
                 _holdObject = Instantiate(stash.Prefab, _center.transform.position, Quaternion.Euler(-90f, 0, 0), gameObject.transform);

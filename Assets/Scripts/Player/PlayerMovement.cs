@@ -4,7 +4,6 @@ using Zenject;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerInput playerInput;
-
     private CharacterController characterController;
 
     [SerializeField] private float gravity = -9.81f;
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if(playerLocation.Location == PlayerLocation.Locations.World)
+        if(playerLocation.GetLocation() == PlayerLocation.Locations.World)
         {
             if (Mathf.Abs(playerInput.Horizontal) + Mathf.Abs(playerInput.Vertical) <= 0.9)
             {

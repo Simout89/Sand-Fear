@@ -15,7 +15,7 @@ public class AirFilterSlot : MonoBehaviour, IInteractive, IShelf, IBrokenParts
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+
     }
 
     private void Awake()

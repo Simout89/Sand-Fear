@@ -14,6 +14,8 @@ public class PlayerOxygen : MonoBehaviour
     [SerializeField] private float Oxygen;
     [SerializeField] private AudioSource audioSource;
 
+
+
     private PlayerLocation playerLocation;
     [Inject]
     public void Construct(PlayerLocation playerLocation)
@@ -27,7 +29,7 @@ public class PlayerOxygen : MonoBehaviour
 
     private void Update()
     {
-        if(((playerLocation.Location == PlayerLocation.Locations.Car) && (BrokenPartSlot.Works)) || (playerLocation.Location == PlayerLocation.Locations.CutScene) || (playerLocation.Location == PlayerLocation.Locations.House))
+        if(((playerLocation.GetLocation() == PlayerLocation.Locations.Car) && (BrokenPartSlot.Works)) || (playerLocation.GetLocation() == PlayerLocation.Locations.CutScene) || (playerLocation.GetLocation() == PlayerLocation.Locations.House))
         {
             if(Oxygen <= MaxOxygen)
             {

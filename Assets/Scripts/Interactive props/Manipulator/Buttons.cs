@@ -1,26 +1,14 @@
 using UnityEngine;
 using Zenject;
 
-public class Buttons : MonoBehaviour,IInteractive,IButton
+public class Buttons : MonoBehaviour,IButton
 {
     [SerializeField] private Transform ButtonBody;
-    public bool Active { get; set; }
     public bool Hold { get; set; }
 
     private Vector3 startPos;
 
     private Vector3 endPos;
-
-    private PlayerInteract playerInteract;
-    [Inject]
-    public void Construct(PlayerInteract playerInteract)
-    {
-        this.playerInteract = playerInteract;
-    }
-
-    public void Activate()
-    {
-    }
 
 
     private void Awake()
@@ -32,17 +20,16 @@ public class Buttons : MonoBehaviour,IInteractive,IButton
         endPos = startPos + globalOffset;
         
     }
-    void Update()
+
+    public void Press()
     {
-        if(playerInteract.UseProps && (playerInteract.RayTarget == gameObject))
-        {
-            ButtonBody.transform.localPosition = endPos;
-            Hold = true;
-        }
-        else
-        {
-            ButtonBody.transform.localPosition = startPos;
-            Hold = false;
-        }
+        ButtonBody.transform.localPosition = endPos;
+        Hold = true;
+    }
+
+    public void Relize()
+    {
+        ButtonBody.transform.localPosition = startPos;
+        Hold = false;
     }
 }

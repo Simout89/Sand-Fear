@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 public class CutSceneState : MonoBehaviour
 {
@@ -7,9 +8,14 @@ public class CutSceneState : MonoBehaviour
     public static UnityEvent onCutScene = new UnityEvent();
     private bool state = true;
 
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
+    {
+        this.playerLocation = playerLocation;
+    }
     private void Awake()
     {
-        Application.targetFrameRate = 60;
         onCutScene.AddListener(HandleCutScene);
     }
 
@@ -20,6 +26,6 @@ public class CutSceneState : MonoBehaviour
         {
             scripts[i].enabled = state;
         }
-        PlayerLocation.onPlayerPosition.Invoke(PlayerLocation.Locations.CutScene);
+        playerLocation.SetLocation(PlayerLocation.Locations.CutScene);
     }
 }

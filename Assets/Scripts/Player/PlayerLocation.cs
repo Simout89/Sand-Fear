@@ -4,19 +4,7 @@ using UnityEngine.Events;
 public class PlayerLocation : MonoBehaviour
 {
 
-    public static UnityEvent<Locations> onPlayerPosition = new UnityEvent<Locations>(); // оепедекюрэ
-
-    public Locations Location = Locations.Car; // true = car, false = world
-
-    private void Awake()
-    {
-        onPlayerPosition.AddListener(HandlePlayerPosition);
-    }
-
-    private void HandlePlayerPosition(Locations locations)
-    {
-        Location = locations;
-    }
+    private Locations Location = Locations.Car; // true = car, false = world
 
     public enum Locations
     {
@@ -24,5 +12,15 @@ public class PlayerLocation : MonoBehaviour
         Car,
         House,
         CutScene
+    }
+
+    public void SetLocation( Locations loc )
+    {
+        Location = loc;
+    }
+
+    public Locations GetLocation()
+    {
+        return Location;
     }
 }
