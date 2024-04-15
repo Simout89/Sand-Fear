@@ -10,6 +10,8 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
     public bool Active { get; set; } = false;
     public float Value { get; set; }
 
+    private bool FirstUse = true;
+
     private UIController uIController;
     [Inject]
     public void Construct(UIController uIController)
@@ -30,10 +32,15 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
                 uIController.OpenNote(noteScriptableObject.Text);
             else
             {
-                Player.GetComponent<CharacterController>().enabled = false;
-                Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
-                Player.GetComponent<CharacterController>().enabled = true;
-                CutSceneState.onCutScene.Invoke(Location);
+                if(FirstUse)
+                {
+                    StartCoroutine(uIController.Blink());
+                    Player.GetComponent<CharacterController>().enabled = false;
+                    Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
+                    Player.GetComponent<CharacterController>().enabled = true;
+                    CutSceneState.onCutScene.Invoke(Location);
+                }
+                FirstUse = false;
                 uIController.CloseNote();
             }
         }else

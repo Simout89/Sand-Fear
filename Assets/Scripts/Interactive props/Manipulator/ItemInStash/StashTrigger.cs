@@ -4,11 +4,19 @@ using static PlayerLocation;
 
 public class StashTrigger : MonoBehaviour
 {
+    [SerializeField] private Transform TeleportTarget;
     private PlayerLocation playerLocation;
     [Inject]
     public void Construct(PlayerLocation playerLocation)
     {
         this.playerLocation = playerLocation;
+    }
+
+    private GameObject Player;
+    [Inject]
+    public void Construct(GameObject Player)
+    {
+        this.Player = Player;
     }
 
     [SerializeField] private ManipulatorRadio _manipulatorRadio;
@@ -26,6 +34,9 @@ public class StashTrigger : MonoBehaviour
             if(itemInStash.GetTypeItem() == TypeItem.statue)
             {
                 playerLocation.SetLocation(Locations.World);
+                Player.GetComponent<CharacterController>().enabled = false;
+                Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
+                Player.GetComponent<CharacterController>().enabled = true;
             }
         }
     }
