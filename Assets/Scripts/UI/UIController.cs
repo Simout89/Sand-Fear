@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text NoteText;
     [SerializeField] private GameObject NewspaperObject;
     [SerializeField] private TMP_Text NewspaperText;
-    [SerializeField] private Image BlackScreen;
+    [SerializeField] private Animator BlackScreen;
     private PlayerInput playerInput;
     [Inject]
     public void Construct(PlayerInput playerInput)
@@ -55,20 +55,8 @@ public class UIController : MonoBehaviour
         NewspaperObject.SetActive(false);
     }
 
-    public IEnumerator Blink()
+    public void Blink()
     {
-        Color color = Color.black;
-        color.a = 0;
-        while (BlackScreen.color.a != 100)
-        {
-            BlackScreen.color = color;
-            color.a += Time.deltaTime;
-        }
-        while (BlackScreen.color.a != 0)
-        {
-            BlackScreen.color = color;
-            color.a -= Time.deltaTime;
-        }
-        yield return null;
+        BlackScreen.SetTrigger("Blink");
     }
 }

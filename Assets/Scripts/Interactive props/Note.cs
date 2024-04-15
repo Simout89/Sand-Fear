@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -34,11 +35,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
             {
                 if(FirstUse)
                 {
-                    StartCoroutine(uIController.Blink());
-                    Player.GetComponent<CharacterController>().enabled = false;
-                    Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
-                    Player.GetComponent<CharacterController>().enabled = true;
-                    CutSceneState.onCutScene.Invoke(Location);
+                    StartCoroutine(Teleport());
                 }
                 FirstUse = false;
                 uIController.CloseNote();
@@ -54,6 +51,16 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
         }
     }
     
+    private IEnumerator Teleport()
+    {
+        uIController.Blink();
+        yield return new WaitForSeconds(0.5f);
+        Player.GetComponent<CharacterController>().enabled = false;
+        Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
+        Player.GetComponent<CharacterController>().enabled = true;
+        CutSceneState.onCutScene.Invoke(Location);
+    }
+
     enum Type
     {
         Note,
