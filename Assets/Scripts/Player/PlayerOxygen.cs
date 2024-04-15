@@ -29,7 +29,9 @@ public class PlayerOxygen : MonoBehaviour
 
     private void Update()
     {
-        if(((playerLocation.GetLocation() == PlayerLocation.Locations.Car) && (BrokenPartSlot.Works)) || (playerLocation.GetLocation() == PlayerLocation.Locations.CutScene) || (playerLocation.GetLocation() == PlayerLocation.Locations.House))
+        if(((playerLocation.GetLocation() == PlayerLocation.Locations.Car) && (BrokenPartSlot.Works))
+            || (playerLocation.GetLocation() == PlayerLocation.Locations.CutSceneInd)
+            || (playerLocation.GetLocation() == PlayerLocation.Locations.House) || (playerLocation.GetLocation() == PlayerLocation.Locations.CutSceneTemple))
         {
             if(Oxygen <= MaxOxygen)
             {

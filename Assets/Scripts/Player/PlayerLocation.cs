@@ -11,7 +11,8 @@ public class PlayerLocation : MonoBehaviour
         World,
         Car,
         House,
-        CutScene
+        CutSceneInd,
+        CutSceneTemple
     }
 
     public void SetLocation( Locations loc )

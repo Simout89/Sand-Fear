@@ -5,6 +5,7 @@ public class SoundController : MonoBehaviour
 {
     [SerializeField] private GameObject InCarSound;
     [SerializeField] private GameObject OutCarSound;
+    [SerializeField] private GameObject IndCutScene;
 
 
     [SerializeField] private AudioSource CarInEngine;
@@ -30,14 +31,22 @@ public class SoundController : MonoBehaviour
         {
             case PlayerLocation.Locations.Car:
                 {
+                    IndCutScene.SetActive(false);
                     OutCarSound.SetActive(false);
                     InCarSound.SetActive(true);
                 };break;
             case PlayerLocation.Locations.World:
                 {
+                    IndCutScene.SetActive(false);
                     OutCarSound.SetActive(true);
                     InCarSound.SetActive(false);
                 };break;
+            case PlayerLocation.Locations.CutSceneInd:
+                {
+                    IndCutScene.SetActive(true);
+                    OutCarSound.SetActive(false);
+                    InCarSound.SetActive(false);
+                }; break;
         }
 
         

@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class GripController : MonoBehaviour
 {
+    [SerializeField] private AudioClip CloseClamp;
+    private AudioSource _audioSource;
     [SerializeField] private Transform _center;
     [SerializeField] private Buttons _redButton;
     [SerializeField] private Lamp _lamp;
     private GameObject _holdObject = null;
     private bool _dropReady = false;
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -24,6 +30,7 @@ public class GripController : MonoBehaviour
 
             if (_redButton.Hold && (_holdObject == null) && hit.collider.TryGetComponent(out Stash stash))
             {
+                _audioSource.PlayOneShot(CloseClamp);
                 _holdObject = Instantiate(stash.Prefab, _center.transform.position, Quaternion.Euler(-90f, 0, 0), gameObject.transform);
                 stash.Next();
             }

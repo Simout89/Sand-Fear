@@ -5,6 +5,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
 {
     [SerializeField] private Type type;
     [SerializeField] private Transform TeleportTarget;
+    [SerializeField] private PlayerLocation.Locations Location;
     [SerializeField] private NoteScriptableObject noteScriptableObject;
     public bool Active { get; set; } = false;
     public float Value { get; set; }
@@ -32,7 +33,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
                 Player.GetComponent<CharacterController>().enabled = false;
                 Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
                 Player.GetComponent<CharacterController>().enabled = true;
-                CutSceneState.onCutScene.Invoke();
+                CutSceneState.onCutScene.Invoke(Location);
                 uIController.CloseNote();
             }
         }else

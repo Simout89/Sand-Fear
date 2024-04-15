@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManipulatorController : MonoBehaviour
@@ -27,7 +28,7 @@ public class ManipulatorController : MonoBehaviour
     [SerializeField] private float CarriageSpeed = 1f;
     [SerializeField] private float GripDistance = 1;
     [SerializeField] private float GripSpeed = 1f;
-
+   
 
     private float ArrowAngleValue;
     private float CarriageValue;
@@ -38,10 +39,12 @@ public class ManipulatorController : MonoBehaviour
     private Vector3 RopeStartScale;
     private Vector3 RopeStartPos;
 
-
+    private AudioSource _audioSource;
 
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         CarriageStartPos = Ñarriage.localPosition;
         GripStartPos = Grip.localPosition;
         RopeStartScale = Rope.localScale;
@@ -52,6 +55,7 @@ public class ManipulatorController : MonoBehaviour
         ArrowButtons();
         GripButtons();
 
+        Sound();
         Arrow.localRotation = Quaternion.Euler(0, Mathf.Clamp(ArrowAngleValue * ArrowMaxRotate, -ArrowMaxRotate, ArrowMaxRotate), 0);
         Ñarriage.localPosition = CarriageStartPos + new Vector3(Mathf.Clamp(CarriageValue * CarriageDistance, 0, CarriageDistance), 0, 0);
         Grip.localPosition = GripStartPos - new Vector3(0, 0, Mathf.Clamp(GripValue * GripDistance, 0, GripDistance));
@@ -78,5 +82,15 @@ public class ManipulatorController : MonoBehaviour
             CarriageValue = Mathf.Clamp(CarriageValue + CarriageSpeed * Time.deltaTime, 0, 1);
         if (TriangularButtonDown.Hold && !BackTrigger.Trigger)
             CarriageValue = Mathf.Clamp(CarriageValue - CarriageSpeed * Time.deltaTime, 0, 1);
+    }
+
+    private void Sound()
+    {
+        if((GripTriangularButtonDown.Hold || GripTriangularButtonUp.Hold || TriangularButtonRight.Hold || TriangularButtonLeft.Hold
+            || TriangularButtonUp.Hold || TriangularButtonDown.Hold) != false)
+        {
+            _audioSource.mute = false;
+        }else
+            _audioSource.mute = true;
     }
 }

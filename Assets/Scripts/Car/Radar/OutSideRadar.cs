@@ -1,26 +1,32 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class OutSideRadar : MonoBehaviour
 {
     [SerializeField] private LayerMask layer;
-
     [SerializeField] private Lever leverVertical;
-
     [SerializeField] private float Distance = 5f;
     [SerializeField] private float Radius = 1f;
     [SerializeField] private float Speed = 1f;
     [SerializeField] private float PointSpawnSpeed = 1f;
     [SerializeField] private float PingDelaySec = 1f;
     [SerializeField] private float DetectAngel = 1f;
-
     [SerializeField] private GameObject Pivot;
     [SerializeField] private GameObject GreenPoint;
     [SerializeField] private GameObject YellowPoint;
     [SerializeField] private GameObject Target;
     [SerializeField] private AudioClip RadarPing;
     [SerializeField] private AudioSource audioSource;
+
+
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
+    {
+        this.playerLocation = playerLocation;
+    }
 
     private bool delay = true;
     private bool pingDelay = true;
@@ -47,7 +53,7 @@ public class OutSideRadar : MonoBehaviour
                     }
                 }else
                 {
-                    if(pingDelay)
+                    if(pingDelay && (playerLocation.GetLocation() == PlayerLocation.Locations.Car))
                     {
                         audioSource.PlayOneShot(RadarPing);
                         StartCoroutine(PingDelay());
