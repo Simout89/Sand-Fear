@@ -6,15 +6,16 @@ using Zenject;
 public class OutSideRadar : MonoBehaviour
 {
     [SerializeField] private LayerMask layer;
-    [SerializeField] private Lever leverVertical;
     [SerializeField] private float Distance = 5f;
     [SerializeField] private float Radius = 1f;
     [SerializeField] private float Speed = 1f;
     [SerializeField] private float PointSpawnSpeed = 1f;
     [SerializeField] private float PingDelaySec = 1f;
     [SerializeField] private float DetectAngel = 1f;
+    [SerializeField] private float Lever = 1f;
     [SerializeField] private GameObject Pivot;
     [SerializeField] private GameObject GreenPoint;
+    [SerializeField] private Transform MaxLenght;
     [SerializeField] private GameObject YellowPoint;
     [SerializeField] private GameObject Target;
     [SerializeField] private AudioClip RadarPing;
@@ -38,9 +39,9 @@ public class OutSideRadar : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, leverVertical.Value, ~layer))
+        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, Lever, ~layer))
         {
-            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ leverVertical.Value) * -1.05f);
+            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ Lever) * -Vector3.Distance(MaxLenght.localPosition, Pivot.transform.localPosition));
             if(delay)
             {
                 if(hit.collider.gameObject.layer == 3)
