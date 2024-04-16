@@ -14,9 +14,10 @@ public class Shelf : MonoBehaviour,IInteractive,IShelf
     {
         if (StartItem != null)
         {
-            Item = Instantiate(StartItem, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+            Item = Instantiate(StartItem, gameObject.transform.position, Quaternion.Euler(0, -180f, 0), gameObject.transform);
             if (Item.TryGetComponent(out ICollectable iCollectable))
             {
+                Item.transform.localPosition = iCollectable.ShelfPos;
                 iCollectable.Collect();
 
             }

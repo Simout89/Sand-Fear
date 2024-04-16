@@ -2100,7 +2100,7 @@ Transform:
   m_GameObject: {fileID: 266970700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: -1.46, z: 0.039895892}
+  m_LocalPosition: {x: -0.23, y: 6.26, z: 0.039895892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5362,13 +5362,13 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
-  Distance: 14.67
+  Distance: 30
   Radius: 0.44
   Speed: 2
   PointSpawnSpeed: 0.01
   PingDelaySec: 0.5
   DetectAngel: 1
-  Lever: 1
+  Lever: 30
   Pivot: {fileID: 1115091486}
   GreenPoint: {fileID: 7867639289243499851, guid: cc6f2b1eacc135842832b1040e8259d5,
     type: 3}
@@ -6937,7 +6937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82977e245e94d1a4a8ed509d3ea2548e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartItem: {fileID: 0}
+  StartItem: {fileID: 3323557217807498599, guid: 4dd84ad8ef587e042884d57d0577b3a8,
+    type: 3}
 --- !u!65 &929124967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6985,7 +6986,7 @@ Transform:
   m_GameObject: {fileID: 942251692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.23, z: 4.3}
+  m_LocalPosition: {x: 0, y: 0.694, z: 2.941}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7515,12 +7516,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 436994874}
   - {fileID: 821786534}
   - {fileID: 396941533}
   - {fileID: 1283383245}
   - {fileID: 90831170}
   - {fileID: 1045144214}
-  - {fileID: 436994874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11584,7 +11585,7 @@ Transform:
   m_GameObject: {fileID: 1621085173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.06, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12902,6 +12903,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -4700725489559409698, guid: 4a02b06cddc875440a07309e9011e925,
+        type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8c4205abf70aa84ea2df8d0624c7b13, type: 2}
     - target: {fileID: -1950733119399844177, guid: 4a02b06cddc875440a07309e9011e925,
         type: 3}
       propertyPath: m_LocalRotation.w

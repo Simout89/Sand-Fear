@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using Zenject;
 using static PlayerLocation;
+using static UnityEditor.FilePathAttribute;
 
 public class StashTrigger : MonoBehaviour
 {
@@ -18,6 +20,12 @@ public class StashTrigger : MonoBehaviour
     {
         this.Player = Player;
     }
+    private UIController uIController;
+    [Inject]
+    public void Construct(UIController uIController)
+    {
+        this.uIController = uIController;
+    }
 
     [SerializeField] private ManipulatorRadio _manipulatorRadio;
     public enum TypeItem
@@ -33,11 +41,19 @@ public class StashTrigger : MonoBehaviour
             _manipulatorRadio.PlayWithItemType(itemInStash.GetTypeItem());
             if(itemInStash.GetTypeItem() == TypeItem.statue)
             {
-                playerLocation.SetLocation(Locations.World);
-                Player.GetComponent<CharacterController>().enabled = false;
-                Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
-                Player.GetComponent<CharacterController>().enabled = true;
+                StartCoroutine(Teleport());
             }
         }
     }
+    private IEnumerator Teleport()
+    {
+        yield return new WaitForSeconds(2f);
+        uIController.Blink();
+        yield return new WaitForSeconds(0.5f);
+        playerLocation.SetLocation(Locations.World);
+        Player.GetComponent<CharacterController>().enabled = false;
+        Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
+        Player.GetComponent<CharacterController>().enabled = true;
+    }
 }
+
