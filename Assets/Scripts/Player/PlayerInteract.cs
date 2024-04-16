@@ -60,7 +60,6 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-
     private void Shelf(RaycastHit hit)
     {
         if (hit.collider.TryGetComponent(out IShelf iShelf) && playerInput.InteractButton)
