@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  StartValue: 100
+  StartValue: 500
   Value: 0
 --- !u!54 &8784773905682253938
 Rigidbody:

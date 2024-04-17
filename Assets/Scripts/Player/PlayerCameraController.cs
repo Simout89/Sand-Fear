@@ -11,11 +11,8 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private Slider slider;
     private float mouseX;
     private float mouseY;
-
     private float xRotation;
-
     private bool HoldItem = false;
-
     private bool LockMouse = true;
 
     private void Awake()
@@ -40,15 +37,8 @@ public class PlayerCameraController : MonoBehaviour
             Time.timeScale = 1f;
             mouseX = playerInput.MouseX * slider.value * Time.deltaTime;
             mouseY = playerInput.MouseY * slider.value * Time.deltaTime;
-
-            float minpos;
-            if (HoldItem)
-                minpos = 30f;
-            else
-                minpos = 90f;
-
             xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, minpos);
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             PlayerCamera.localRotation = Quaternion.Euler(xRotation, 0, 0);
             transform.Rotate(Vector3.up * mouseX);
             Cursor.lockState = CursorLockMode.Locked;
