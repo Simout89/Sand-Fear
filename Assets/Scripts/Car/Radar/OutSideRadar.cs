@@ -46,13 +46,16 @@ public class OutSideRadar : MonoBehaviour
             {
                 if(hit.collider.gameObject.layer == 3)
                 {
-                    Vector3 surfaceNormal = hit.normal;
-                    if(Mathf.Abs(surfaceNormal.x) > DetectAngel) // реяр
-                    {
-                        Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
-                        StartCoroutine(Delay());
-                    }
-                }else
+                    //Vector3 surfaceNormal = hit.normal;
+                    //if(Mathf.Abs(surfaceNormal.x) > DetectAngel) // реяр
+                    //{
+                    //    Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
+                    //    StartCoroutine(Delay());
+                    //}
+                    Instantiate(YellowPoint, Target.transform.position, Quaternion.Euler(0, 0, Pivot.transform.rotation.eulerAngles.z));
+                    StartCoroutine(Delay());
+                }
+                else
                 {
                     if(pingDelay && (playerLocation.GetLocation() == PlayerLocation.Locations.Car))
                     {

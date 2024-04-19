@@ -6,9 +6,7 @@ public class CarController : MonoBehaviour
 
     private Rigidbody _rigidBody;
 
-    [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float speed = 12f;
-    [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private float rotateScale = 10f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
