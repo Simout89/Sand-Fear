@@ -5,6 +5,7 @@ using Zenject;
 [RequireComponent(typeof(NavMeshAgent))]
 public class FsmMonster : MonoBehaviour
 {
+    [SerializeField] private Transform CheckPoint;
     [SerializeField] private Transform[] PatrolTargets;
     [SerializeField] private float PlayerDetectDistance = 5f;
     [SerializeField] private bool GizmosActive = false;
@@ -44,5 +45,13 @@ public class FsmMonster : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(transform.position, PlayerDetectDistance);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Player.GetComponent<CharacterController>().enabled = false;
+        Player.GetComponent<CharacterController>().transform.position = CheckPoint.transform.position;
+        Player.GetComponent<CharacterController>().enabled = true;
+        _fsm.SetState<FsmStatePatrol>();
     }
 }

@@ -54,7 +54,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
     private IEnumerator Teleport()
     {
         uIController.Blink();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);  
         Player.GetComponent<CharacterController>().enabled = false;
         Player.GetComponent<CharacterController>().transform.position = TeleportTarget.transform.position;
         Player.GetComponent<CharacterController>().enabled = true;
