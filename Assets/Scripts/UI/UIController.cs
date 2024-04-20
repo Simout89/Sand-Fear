@@ -1,11 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private FullScreenPassRendererFeature _fullScreenPassRendererFeature;
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject Menu;
     [SerializeField] private GameObject NoteObject;
@@ -19,7 +21,10 @@ public class UIController : MonoBehaviour
     {
         this.playerInput = playerInput;
     }
-
+    private void Awake()
+    {
+        slider.value = AudioListener.volume;
+    }
     private void Update()
     {
         if(playerInput.EscButton)
@@ -31,6 +36,16 @@ public class UIController : MonoBehaviour
     public void VolumeSlider()
     {
         AudioListener.volume = slider.value;
+    }
+
+    public void MainMenu()
+    {
+        _fullScreenPassRendererFeature.SetActive(false);
+        SceneManager.LoadScene(0);
+    }
+    private void OnDisable()
+    {
+        _fullScreenPassRendererFeature.SetActive(false);
     }
 
     public void OpenNote(string text)

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BrokenPartSlot : MonoBehaviour, IInteractive, IShelf, IBrokenParts
 {
-
     [SerializeField] private ItemValue.ItemType itemType;
     [SerializeField] private GameObject StartItem = null;
     [SerializeField] private float Speed = 1f;

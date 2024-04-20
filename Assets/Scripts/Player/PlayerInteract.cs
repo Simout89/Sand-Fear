@@ -17,13 +17,9 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private PlayerMovement MoveScript;
     [SerializeField] private PlayerCameraController CameraScript;
     [SerializeField] private CameraShake CameraShake;
-
-    
-
     private GameObject HoldItem = null;
     private GameObject BufferItem = null;
     private GameObject BufferButton = null;
-
     private bool DelaySlider = true;
     public bool UseProps { get; private set; } = false;
     private PlayerInput playerInput;
@@ -31,6 +27,13 @@ public class PlayerInteract : MonoBehaviour
     public void Construct(PlayerInput playerInput)
     {
         this.playerInput = playerInput;
+    }
+
+    private PlayerLocation playerLocation;
+    [Inject]
+    public void Construct(PlayerLocation playerLocation)
+    {
+        this.playerLocation = playerLocation;
     }
 
     private void ValueProps(RaycastHit hit)
@@ -146,7 +149,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void PutItem()
     {
-        if (playerInput.SecondInteractButton && HoldItem)
+        if (playerInput.SecondInteractButton && HoldItem && (playerLocation.GetLocation() != PlayerLocation.Locations.Car))
         {
             if (HoldItem.TryGetComponent(out IInteractive iInteractive))
                 iInteractive.Active = false;

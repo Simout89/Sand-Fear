@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using Zenject;
 using static PlayerLocation;
-using static UnityEditor.FilePathAttribute;
 
 public class StashTrigger : MonoBehaviour
 {
