@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,14 +9,18 @@ public class FsmStatePatrol : FsmState
     protected readonly Transform Transform;
     protected readonly Transform PlayerTransform;
     protected readonly NavMeshAgent NavMeshAgent;
+    protected readonly Animator Animator;
     protected readonly float PlayerDetectDistance;
-    public FsmStatePatrol(Fsm fsm, Transform[] patrolTargets, NavMeshAgent navMeshAgent, Transform transform, Transform playerTransform, float playerDetectDistance) : base(fsm) 
+    public FsmStatePatrol(Fsm fsm, Transform[] patrolTargets, NavMeshAgent navMeshAgent,
+        Transform transform, Transform playerTransform, float playerDetectDistance,
+        Animator animator) : base(fsm) 
     {
         PatrolTargets = patrolTargets;
         NavMeshAgent = navMeshAgent;
         PlayerDetectDistance = playerDetectDistance;
         PlayerTransform = playerTransform;
         Transform = transform;
+        Animator = animator;
     }
 
     public override void Enter()
@@ -33,13 +38,14 @@ public class FsmStatePatrol : FsmState
     {
         Patrol();
         CheckDistanceToPlayer();
+        Debug.Log("Patrol Update");
     }
 
     private void Patrol()
     {
         if(NavMeshAgent.remainingDistance < 2f) 
         {
-            NavMesAgentSetRandomDestination();
+            Fsm.SetState<FsmStateLookingAround>();
         }
     }
 

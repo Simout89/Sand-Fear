@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -5,10 +6,10 @@ using Zenject;
 [RequireComponent(typeof(NavMeshAgent))]
 public class FsmMonster : MonoBehaviour
 {
-    [SerializeField] private Transform CheckPoint;
     [SerializeField] private Transform[] PatrolTargets;
-    [SerializeField] private float PlayerDetectDistance = 5f;
     [SerializeField] private bool GizmosActive = false;
+    [SerializeField] private float PlayerDetectDistance = 5f;
+    [SerializeField] private Animator animator;
 
     private NavMeshAgent navMeshAgent;
     private Fsm _fsm;
@@ -20,6 +21,12 @@ public class FsmMonster : MonoBehaviour
         this.Player = Player;
     }
 
+    private CheckPointSystem checkPointSystem;
+    [Inject]
+    public void Construct(CheckPointSystem checkPointSystem)
+    {
+        this.checkPointSystem = checkPointSystem;
+    }
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -27,8 +34,9 @@ public class FsmMonster : MonoBehaviour
         _fsm = new Fsm();
 
         _fsm.AddState(new FsmStateIdle(_fsm));
-        _fsm.AddState(new FsmStatePatrol(_fsm, PatrolTargets, navMeshAgent, transform, Player.transform, PlayerDetectDistance));
-        _fsm.AddState(new FsmStatePurSuit(_fsm, navMeshAgent, Player.transform));
+        _fsm.AddState(new FsmStatePatrol(_fsm, PatrolTargets, navMeshAgent, transform, Player.transform, PlayerDetectDistance, animator));
+        _fsm.AddState(new FsmStatePurSuit(_fsm, navMeshAgent, Player.transform, animator));
+        _fsm.AddState(new FsmStateLookingAround(_fsm, transform, Player.transform, PlayerDetectDistance, animator));
 
         _fsm.SetState<FsmStateIdle>();
     }
@@ -49,9 +57,11 @@ public class FsmMonster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Player.GetComponent<CharacterController>().enabled = false;
-        Player.GetComponent<CharacterController>().transform.position = CheckPoint.transform.position;
-        Player.GetComponent<CharacterController>().enabled = true;
-        _fsm.SetState<FsmStatePatrol>();
+        if(other.CompareTag("Player"))
+        {
+            animator.SetTrigger("Attack");
+            checkPointSystem.ReturnOnCheckPoint();
+            _fsm.SetState<FsmStatePatrol>();
+        }
     }
 }
