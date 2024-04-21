@@ -61,7 +61,7 @@ public class FsmMonster : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             checkPointSystem.ReturnOnCheckPoint();
-            _fsm.SetState<FsmStatePatrol>();
+            _fsm.SetState<FsmStateLookingAround>();
         }
     }
 }
