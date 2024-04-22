@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 using static PlayerLocation;
-using static UnityEditor.FilePathAttribute;
 
 public class CutSceneState : MonoBehaviour
 {

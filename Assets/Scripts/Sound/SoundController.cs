@@ -6,6 +6,8 @@ public class SoundController : MonoBehaviour
     [SerializeField] private GameObject InCarSound;
     [SerializeField] private GameObject OutCarSound;
     [SerializeField] private GameObject IndCutScene;
+    [SerializeField] private GameObject House;
+    [SerializeField] private GameObject TempleCutScene;
 
 
     [SerializeField] private AudioSource CarInEngine;
@@ -33,17 +35,39 @@ public class SoundController : MonoBehaviour
                 {
                     IndCutScene.SetActive(false);
                     OutCarSound.SetActive(false);
+                    TempleCutScene.SetActive(false);
+                    House.SetActive(false);
                     InCarSound.SetActive(true);
                 };break;
             case PlayerLocation.Locations.World:
                 {
+                    TempleCutScene.SetActive(false);
+                    House.SetActive(false);
                     IndCutScene.SetActive(false);
                     OutCarSound.SetActive(true);
                     InCarSound.SetActive(false);
                 };break;
             case PlayerLocation.Locations.CutSceneInd:
                 {
+                    TempleCutScene.SetActive(false);
+                    House.SetActive(false);
                     IndCutScene.SetActive(true);
+                    OutCarSound.SetActive(false);
+                    InCarSound.SetActive(false);
+                }; break;
+            case PlayerLocation.Locations.House:
+                {
+                    TempleCutScene.SetActive(false);
+                    House.SetActive(true);
+                    IndCutScene.SetActive(false);
+                    OutCarSound.SetActive(false);
+                    InCarSound.SetActive(false);
+                }; break;
+            case PlayerLocation.Locations.CutSceneTemple:
+                {
+                    TempleCutScene.SetActive(true);
+                    House.SetActive(false);
+                    IndCutScene.SetActive(false);
                     OutCarSound.SetActive(false);
                     InCarSound.SetActive(false);
                 }; break;

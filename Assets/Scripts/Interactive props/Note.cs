@@ -40,13 +40,23 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
                 FirstUse = false;
                 uIController.CloseNote();
             }
-        }else
+        }else if(type == Type.Newspaper)
         {
             if (Active)
                 uIController.OpenNewspaper(noteScriptableObject.Text);
             else
             {
                 uIController.CloseNewspaper();
+            }
+        }else
+        {
+            if (Active)
+            {
+                uIController.OpenDirectory();
+            }
+            else
+            {
+                uIController.CloseDirectory();
             }
         }
     }
@@ -64,6 +74,7 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
     enum Type
     {
         Note,
-        Newspaper
+        Newspaper,
+        Directory
     }
 }

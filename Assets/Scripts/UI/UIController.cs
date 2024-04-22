@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject NoteObject;
     [SerializeField] private TMP_Text NoteText;
     [SerializeField] private GameObject NewspaperObject;
+    [SerializeField] private GameObject Directory;
     [SerializeField] private TMP_Text NewspaperText;
     [SerializeField] private Animator BlackScreen;
     private PlayerInput playerInput;
@@ -57,6 +58,17 @@ public class UIController : MonoBehaviour
     public void CloseNote()
     {
         NoteObject.SetActive(false);
+    }
+
+
+    public void OpenDirectory()
+    {
+        Directory.SetActive(true);
+    }
+
+    public void CloseDirectory()
+    {
+        Directory.SetActive(false);
     }
 
     public void OpenNewspaper(string text)
