@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 95bed901e6732bc44a52dd7a7b6df2b0
+guid: ba5a5671369b7b84e8ff21b0bd947863
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle monah
+      name: Yelling
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 997
+      lastFrame: 470
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

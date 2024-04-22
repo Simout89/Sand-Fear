@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 95bed901e6732bc44a52dd7a7b6df2b0
+guid: baeab71d148ffee4996334294a4e696d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -24,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle monah
+      name: Walking
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 997
+      lastFrame: 57
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

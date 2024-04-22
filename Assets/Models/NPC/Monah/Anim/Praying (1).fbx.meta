@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 95bed901e6732bc44a52dd7a7b6df2b0
+guid: 8c5439dfba55d81449c54f500489f222
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle monah
+      name: Praying stand up
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 997
+      lastFrame: 206
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
