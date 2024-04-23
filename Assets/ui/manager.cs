@@ -66,7 +66,7 @@ public class manager : MonoBehaviour
             case "Костя Мотыка - @Shishi_kaka (3D-художник)":
                 i = 3;
                 break;
-            case "Богдан - @lewdmus (https://t.me/lewdmus) (Sound-дизайнер)":
+            case "Богдан - @lewdmus (https://t.me/lewdmus)\n(Sound & Voice)":
                 i = 4;
                 break;
             case "lopata":
