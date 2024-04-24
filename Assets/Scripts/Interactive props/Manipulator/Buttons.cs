@@ -1,9 +1,14 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
 public class Buttons : MonoBehaviour,IButton,IInteractive
 {
     [SerializeField] private Transform ButtonBody;
+
+    public event Action OnClick;
+
     public bool Hold { get; set; }
     public bool Active { get; set; }
 
@@ -24,6 +29,7 @@ public class Buttons : MonoBehaviour,IButton,IInteractive
 
     public void Press()
     {
+        OnClick?.Invoke();
         ButtonBody.transform.localPosition = endPos;
         Hold = true;
     }
