@@ -7,8 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: ea2c91a46c0b5b44eb6773687897cbd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door 1
+    second: {fileID: 2100000, guid: 4ffa172a0c87d1c4bbf83bf43f7a0510, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: b4beeb24c14c9e84baf34cacc1958185, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wail
+    second: {fileID: 2100000, guid: bc613df98f1d53246b8c6775d6cf79f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Window
     second: {fileID: 2100000, guid: efedc538fcbd4784aa3b60b60c38c5c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 4188bb3af9e644144be569241c34086f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

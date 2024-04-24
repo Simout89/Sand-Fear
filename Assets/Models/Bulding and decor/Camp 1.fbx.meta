@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d8e3f668ddf9464ba628fb9c81c1103
+guid: ccbb4c40e85e9dc449ac618d5efb150c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,10 +7,10 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Window
-    second: {fileID: 2100000, guid: 161a2e3a5661ce144bfa509ca55e6b9d, type: 2}
+      name: Campfire_Maya_2016_phongE3SG
+    second: {fileID: 2100000, guid: ed8cc9e5fe2e0bf4cbc00cdf262e0331, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
