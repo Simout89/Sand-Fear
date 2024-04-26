@@ -18,7 +18,6 @@ public class MonsterWalkSound : MonoBehaviour
         if(other.gameObject.layer == 3)
         {
             audioSource.PlayOneShot(Clip);
-            Debug.Log(321);
         }
     }
 }

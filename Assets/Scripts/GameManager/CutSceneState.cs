@@ -10,7 +10,12 @@ public class CutSceneState : MonoBehaviour
     [SerializeField] private Behaviour[] scripts;
     [SerializeField] private Behaviour[] playerscripts;
     [SerializeField] private float CutScene2Lenght = 10;
+    [SerializeField] private float CutScene3Lenght = 10;
     [SerializeField] private Transform NoteTarget;
+    [SerializeField] private Transform NoteTarget2;
+    [SerializeField] private GameObject LastTrigger;
+
+    [SerializeField] private int teleportcount = 0;
 
     public static UnityEvent<PlayerLocation.Locations> onCutScene = new UnityEvent<PlayerLocation.Locations>();
     private bool state = true;
@@ -60,7 +65,11 @@ public class CutSceneState : MonoBehaviour
 
     private IEnumerator CutScene2()
     {
-        yield return new WaitForSeconds(CutScene2Lenght);
+        if(teleportcount == 0)
+        {
+            yield return new WaitForSeconds(CutScene2Lenght);
+        }else
+            yield return new WaitForSeconds(CutScene3Lenght);
         StartCoroutine(Teleport());    
     }
 
@@ -70,9 +79,18 @@ public class CutSceneState : MonoBehaviour
         uIController.Blink();
         yield return new WaitForSeconds(0.5f);
         Player.GetComponent<CharacterController>().enabled = false;
-        Player.GetComponent<CharacterController>().transform.position = NoteTarget.transform.position;
+        if(teleportcount == 0)
+        {
+            Player.GetComponent<CharacterController>().transform.position = NoteTarget.transform.position;
+        }else
+        {
+            Player.GetComponent<CharacterController>().transform.position = NoteTarget2.transform.position;
+            LastTrigger.SetActive(true);
+        }
         Player.GetComponent<CharacterController>().enabled = true;
 
+
+        teleportcount++;
         for (int i = 0; i < playerscripts.Length; i++)
         {
             playerscripts[i].enabled = true;

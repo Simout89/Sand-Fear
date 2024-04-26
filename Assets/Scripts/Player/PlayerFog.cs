@@ -4,7 +4,6 @@ using Zenject;
 public class PlayerFog : MonoBehaviour
 {
     [SerializeField] public GameObject Fog;
-    [SerializeField] public Material FogMaterial;
 
     private PlayerLocation playerLocation;
     [Inject]

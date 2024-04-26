@@ -1,6 +1,8 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class PlayerOxygen : MonoBehaviour
@@ -42,6 +44,10 @@ public class PlayerOxygen : MonoBehaviour
             if (Oxygen >= 0)
             {
                 Oxygen -= Time.deltaTime * Speed;
+            }else
+            {
+                SceneManager.LoadScene(2);
+                
             }
         }
 
@@ -56,6 +62,7 @@ public class PlayerOxygen : MonoBehaviour
             audioSource.mute = true;
         }
     }
+
 
     private void OnApplicationQuit()
     {
