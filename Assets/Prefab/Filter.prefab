@@ -467,7 +467,7 @@ MonoBehaviour:
   - {fileID: 340265539037476188}
   - {fileID: 7168095654767599466}
   - {fileID: 968527979495312699}
-  BrokenPart: {fileID: 0}
+  BrokenPart: {fileID: 3323557217807498599}
 --- !u!1 &7168095654767599466
 GameObject:
   m_ObjectHideFlags: 0
