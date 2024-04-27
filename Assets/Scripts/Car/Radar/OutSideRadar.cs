@@ -44,7 +44,7 @@ public class OutSideRadar : MonoBehaviour
             Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ Lever) * -Vector3.Distance(MaxLenght.localPosition, Pivot.transform.localPosition));
             if(delay)
             {
-                if(hit.collider.gameObject.layer == 3)
+                if(hit.collider.gameObject.layer == 8)
                 {
                     //Vector3 surfaceNormal = hit.normal;
                     //if(Mathf.Abs(surfaceNormal.x) > DetectAngel) // реяр

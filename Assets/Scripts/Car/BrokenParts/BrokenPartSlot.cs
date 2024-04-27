@@ -19,7 +19,7 @@ public class BrokenPartSlot : MonoBehaviour, IInteractive, IShelf, IBrokenParts
     {
         if (StartItem != null)
         {
-            Item = Instantiate(StartItem, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+            Item = Instantiate(StartItem, gameObject.transform.position, Quaternion.Euler(0f,0f,0f), gameObject.transform);
             if (Item.TryGetComponent(out ICollectable iCollectable))
             {
                 iCollectable.Collect();
