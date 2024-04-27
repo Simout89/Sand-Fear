@@ -12,14 +12,32 @@ public class BrokenPartDisplay : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < Lamps.Length; i++)
+        if (BrokenPart.TryGetComponent(out IBrokenParts iBrokenParts))
         {
-            if (BrokenPart.TryGetComponent(out IBrokenParts iBrokenParts) && (i < ((iBrokenParts.Value / iBrokenParts.MaxValue) * Lamps.Length)))
+            for (int i = 0; i < Lamps.Length; i++)
             {
-                Lamps[i].GetComponent<MeshRenderer>().material = onMaterial;
-            }else
+                if ((i < ((iBrokenParts.Value / iBrokenParts.MaxValue) * Lamps.Length)))
+                {
+                    Lamps[i].GetComponent<MeshRenderer>().material = onMaterial;
+                }
+                else
+                {
+                    Lamps[i].GetComponent<MeshRenderer>().material = offMaterial;
+                }
+            }
+        }
+        if(BrokenPart.TryGetComponent(out ItemValue itemValue))
+        {
+            for (int i = 0; i < Lamps.Length; i++)
             {
-                Lamps[i].GetComponent<MeshRenderer>().material = offMaterial;
+                if ((i < ((itemValue.Value / itemValue.StartValue) * Lamps.Length)))
+                {
+                    Lamps[i].GetComponent<MeshRenderer>().material = onMaterial;
+                }
+                else
+                {
+                    Lamps[i].GetComponent<MeshRenderer>().material = offMaterial;
+                }
             }
         }
     }
