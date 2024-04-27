@@ -20,6 +20,7 @@ public class PlayerInteract : MonoBehaviour
     private GameObject HoldItem = null;
     private GameObject BufferItem = null;
     private GameObject BufferButton = null;
+    private GameObject BufferValue = null;
     private bool DelaySlider = true;
     public bool UseProps { get; private set; } = false;
     private PlayerInput playerInput;
@@ -40,10 +41,33 @@ public class PlayerInteract : MonoBehaviour
     {
         if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps) && (HoldItem == null) && hit.collider.TryGetComponent(out IInteractive iInteractive))
         {
-            iInteractive.Active = !iInteractive.Active;
-            iInteractive.Activate();
-            UseProps = !UseProps;
-            LockMove();
+            if(BufferValue == null)
+            {
+                BufferValue = hit.collider.gameObject;
+                iInteractive.Active = !iInteractive.Active;
+                iInteractive.Activate();
+                UseProps = !UseProps;
+                LockMove();
+            }
+            else if (BufferValue != null && (BufferValue == hit.collider.gameObject))
+            {
+                iInteractive.Active = !iInteractive.Active;
+                iInteractive.Activate();
+                UseProps = !UseProps;
+                LockMove();
+                BufferValue = null;
+            }
+            else if (BufferValue != null && (BufferValue != hit.collider.gameObject))
+            {
+                if(BufferValue.TryGetComponent(out IInteractive BufferiValueProps))
+                {
+                    BufferiValueProps.Active = !BufferiValueProps.Active;
+                    BufferiValueProps.Activate();
+                }
+                iInteractive.Active = !iInteractive.Active;
+                iInteractive.Activate();
+                BufferValue = hit.collider.gameObject;
+            }
         }
     }
 
@@ -94,8 +118,8 @@ public class PlayerInteract : MonoBehaviour
                 {
                     HoldItem.transform.localPosition = iCollectable.PlayerPos;
                     HoldItem.transform.localScale = iCollectable.PlayerScale;
+                    HoldItem.transform.localRotation = Quaternion.Euler(iCollectable.PlayerRottation);
                 }
-                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 iShelf.Item = null;
                 OnHoldItem.Invoke();
             }
@@ -124,8 +148,8 @@ public class PlayerInteract : MonoBehaviour
                 {
                     HoldItem.transform.localPosition = iCollectable.PlayerPos;
                     HoldItem.transform.localScale = iCollectable.PlayerScale;
-                }
-                HoldItem.transform.localRotation = Quaternion.Euler(0, 0, 0); // забираем из буффера
+                    HoldItem.transform.localRotation = Quaternion.Euler(iCollectable.PlayerRottation);
+                } // Забираем из буффера
 
                 BufferItem = null;
 
@@ -141,7 +165,7 @@ public class PlayerInteract : MonoBehaviour
             iCollectable.Collect();
             hit.collider.transform.parent = ArmSlot.transform;
             hit.collider.transform.localPosition = iCollectable.PlayerPos;
-            hit.collider.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            hit.collider.transform.localRotation = Quaternion.Euler(iCollectable.PlayerRottation);
             HoldItem = hit.collider.gameObject;
             OnHoldItem.Invoke();
         }
@@ -240,13 +264,11 @@ public class PlayerInteract : MonoBehaviour
         if(UseProps)
         {
             MoveScript.enabled = false;
-            CameraScript.enabled = false;
             CameraShake.enabled = false;
         }
         else
         {
             MoveScript.enabled = true;
-            CameraScript.enabled = true;
             CameraShake.enabled = true;
         }
     }

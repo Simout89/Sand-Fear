@@ -28,6 +28,6 @@ public class CarController : MonoBehaviour
 
         _rigidBody.MovePosition(_rigidBody.position +(move * speed * Time.deltaTime));
 
-        transform.Rotate(Vector3.up * (leverHorizontal.Value / rotateScale) );
+        transform.Rotate(Vector3.up * (leverHorizontal.Value * rotateScale * Time.deltaTime));
     }
 }

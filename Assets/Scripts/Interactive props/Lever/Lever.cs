@@ -12,6 +12,9 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
     [SerializeField] private Orientation orientation = Orientation.Vertical;
     [Header("GameObject")]
     [SerializeField] private Transform Handle;
+    [SerializeField] private GameObject indicator;
+    [SerializeField] private Material leverOn;
+    [SerializeField] private Material leverOff;
     public float Value { get; set; }
     public bool Active { get; set; } = false;
 
@@ -44,6 +47,16 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
             StartCoroutine(Delay());
             if(playerInteract.UseProps == false)
                 Active = false;
+        }
+
+
+        if (Active)
+        {
+            indicator.GetComponent<MeshRenderer>().material = leverOn;
+        }
+        else
+        {
+            indicator.GetComponent<MeshRenderer>().material = leverOff;
         }
     }
     

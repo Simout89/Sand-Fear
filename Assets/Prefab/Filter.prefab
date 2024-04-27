@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 340265539037476188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1962, y: 0.22, z: -0.1088}
-  m_LocalScale: {x: 0.03017306, y: 0.068146124, z: 0.068146124}
+  m_LocalPosition: {x: 0.1962, y: 0.19919, z: -0.127}
+  m_LocalScale: {x: 0.03017306, y: 0.026540028, z: 0.03175351}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5667477844350136702}
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 968527979495312699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1962, y: 0.22, z: 0.1164}
-  m_LocalScale: {x: 0.03017306, y: 0.068146124, z: 0.068146124}
+  m_LocalPosition: {x: 0.1962, y: 0.19919, z: -0.02207}
+  m_LocalScale: {x: 0.03017306, y: 0.026540028, z: 0.03175351}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5667477844350136702}
@@ -281,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerScale>k__BackingField: {x: 1, y: 1, z: 1}
   <PlayerPos>k__BackingField: {x: 0, y: 0, z: 0}
+  <PlayerRottation>k__BackingField: {x: 0, y: 90, z: 0}
   <ShelfScale>k__BackingField: {x: 1, y: 1, z: 1}
   <ShelfPos>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &5168055146659612733
@@ -495,8 +496,8 @@ Transform:
   m_GameObject: {fileID: 7168095654767599466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1962, y: 0.22, z: 0.005}
-  m_LocalScale: {x: 0.03017306, y: 0.068146124, z: 0.068146124}
+  m_LocalPosition: {x: 0.1962, y: 0.19919, z: -0.07397}
+  m_LocalScale: {x: 0.03017306, y: 0.026540028, z: 0.03175351}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5667477844350136702}
