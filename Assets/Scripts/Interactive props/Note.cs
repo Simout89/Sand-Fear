@@ -35,12 +35,18 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
                 uIController.OpenNote(noteScriptableObject.Text);
             else
             {
-                if(FirstUse)
+                if(TeleportTarget != null)
                 {
-                    StartCoroutine(Teleport());
+                    if (FirstUse)
+                    {
+                        StartCoroutine(Teleport());
+                    }
+                    FirstUse = false;
+                    uIController.CloseNote();
+                }else
+                {
+                    uIController.CloseNote();
                 }
-                FirstUse = false;
-                uIController.CloseNote();
             }
         }else if(type == Type.Newspaper)
         {
