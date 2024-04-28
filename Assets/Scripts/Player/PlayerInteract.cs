@@ -41,32 +41,42 @@ public class PlayerInteract : MonoBehaviour
     {
         if (playerInput.InteractButton && hit.collider.TryGetComponent(out IValueProps iValueProps) && (HoldItem == null) && hit.collider.TryGetComponent(out IInteractive iInteractive))
         {
-            if(BufferValue == null)
+            if(iValueProps.index == 0)
             {
-                BufferValue = hit.collider.gameObject;
-                iInteractive.Active = !iInteractive.Active;
-                iInteractive.Activate();
-                UseProps = !UseProps;
-                LockMove();
-            }
-            else if (BufferValue != null && (BufferValue == hit.collider.gameObject))
-            {
-                iInteractive.Active = !iInteractive.Active;
-                iInteractive.Activate();
-                UseProps = !UseProps;
-                LockMove();
-                BufferValue = null;
-            }
-            else if (BufferValue != null && (BufferValue != hit.collider.gameObject))
-            {
-                if(BufferValue.TryGetComponent(out IInteractive BufferiValueProps))
+                if (BufferValue == null)
                 {
-                    BufferiValueProps.Active = !BufferiValueProps.Active;
-                    BufferiValueProps.Activate();
+                    BufferValue = hit.collider.gameObject;
+                    iInteractive.Active = !iInteractive.Active;
+                    iInteractive.Activate();
+                    UseProps = !UseProps;
+                    LockMove();
                 }
+                else if (BufferValue != null && (BufferValue == hit.collider.gameObject))
+                {
+                    iInteractive.Active = !iInteractive.Active;
+                    iInteractive.Activate();
+                    UseProps = !UseProps;
+                    LockMove();
+                    BufferValue = null;
+                }
+                else if (BufferValue != null && (BufferValue != hit.collider.gameObject))
+                {
+                    if (BufferValue.TryGetComponent(out IInteractive BufferiValueProps))
+                    {
+                        BufferiValueProps.Active = !BufferiValueProps.Active;
+                        BufferiValueProps.Activate();
+                    }
+                    iInteractive.Active = !iInteractive.Active;
+                    iInteractive.Activate();
+                    BufferValue = hit.collider.gameObject;
+                }
+            }else
+            {
                 iInteractive.Active = !iInteractive.Active;
                 iInteractive.Activate();
-                BufferValue = hit.collider.gameObject;
+                UseProps = !UseProps;
+                LockMove();
+                LockMouse();
             }
         }
     }
@@ -270,6 +280,18 @@ public class PlayerInteract : MonoBehaviour
         {
             MoveScript.enabled = true;
             CameraShake.enabled = true;
+        }
+    }
+
+    private void LockMouse()
+    {
+        if (UseProps)
+        {
+            CameraScript.enabled = false;
+        }
+        else
+        {
+            CameraScript.enabled = true;
         }
     }
 

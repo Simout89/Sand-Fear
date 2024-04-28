@@ -12,7 +12,6 @@ public class OutSideRadar : MonoBehaviour
     [SerializeField] private float PointSpawnSpeed = 1f;
     [SerializeField] private float PingDelaySec = 1f;
     [SerializeField] private float DetectAngel = 1f;
-    [SerializeField] private float Lever = 1f;
     [SerializeField] private GameObject Pivot;
     [SerializeField] private GameObject GreenPoint;
     [SerializeField] private Transform MaxLenght;
@@ -39,9 +38,9 @@ public class OutSideRadar : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, Lever, ~layer))
+        if (Physics.SphereCast(transform.position, Radius, transform.forward, out hit, Distance, ~layer))
         {
-            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ Lever) * -Vector3.Distance(MaxLenght.localPosition, Pivot.transform.localPosition));
+            Target.transform.localPosition = new Vector3(0,-0.062f, (hit.distance/ Distance) * -Vector3.Distance(MaxLenght.localPosition, Pivot.transform.localPosition));
             if(delay)
             {
                 if(hit.collider.gameObject.layer == 8)

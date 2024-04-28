@@ -17,6 +17,7 @@ public class Lever : MonoBehaviour, IValueProps, IInteractive
     [SerializeField] private Material leverOff;
     public float Value { get; set; }
     public bool Active { get; set; } = false;
+    public int index { get; set; } = 0;
 
     private bool isDelay = true;
     private PlayerInteract playerInteract;

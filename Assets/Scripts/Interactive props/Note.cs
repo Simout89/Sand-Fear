@@ -11,6 +11,8 @@ public class Note : MonoBehaviour, IInteractive, IValueProps
     public bool Active { get; set; } = false;
     public float Value { get; set; }
 
+    public int index { get; set; } = 1;
+
     private bool FirstUse = true;
 
     private UIController uIController;

@@ -7,7 +7,9 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
     [SerializeField] private Transform PointToTeleport;
     [SerializeField] private AudioClip DoorSound;
     [SerializeField] private Location location;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private GameObject Indicator;
+    [SerializeField] private Material onIndicator;
+    [SerializeField] private Material offIndicator;
 
     [Header("RayCast")]
     [SerializeField] private float Distance = 5f;
@@ -49,13 +51,11 @@ public class DoorInCar : MonoBehaviour, IInteractive, IHoldInteractive
         {
             if ((carController.leverHorizontal.Value == 0 && (carController.leverVertical.Value == 0)) && (!carController.DoorStuck))
             {
-                text.text = "Open";
-                text.color = Color.green;
+                Indicator.GetComponent<MeshRenderer>().material = onIndicator;
             }
             else
             {
-                text.text = "Close";
-                text.color = Color.red;
+                Indicator.GetComponent<MeshRenderer>().material = offIndicator;
             }
         }else
         {
