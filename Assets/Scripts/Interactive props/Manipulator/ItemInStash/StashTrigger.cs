@@ -46,7 +46,7 @@ public class StashTrigger : MonoBehaviour
     }
     private IEnumerator Teleport()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         uIController.Blink();
         yield return new WaitForSeconds(0.5f);
         playerLocation.SetLocation(Locations.World);

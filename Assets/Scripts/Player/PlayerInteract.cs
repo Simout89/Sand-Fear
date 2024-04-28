@@ -85,7 +85,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (hit.collider.TryGetComponent(out IHoldInteractive iHoldInteractive))
         {
-            if (playerInput.InteractButtonHold)
+            if (playerInput.InteractButtonHold && (BufferValue == null))
             {
                 if (DelaySlider)
                     StartCoroutine(FillSlider(iHoldInteractive));
@@ -288,10 +288,12 @@ public class PlayerInteract : MonoBehaviour
         if (UseProps)
         {
             CameraScript.enabled = false;
+            Time.timeScale = 0;
         }
         else
         {
             CameraScript.enabled = true;
+            Time.timeScale = 1;
         }
     }
 
