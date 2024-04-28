@@ -37,7 +37,7 @@ public class PlayerOxygen : MonoBehaviour
         {
             if(Oxygen <= MaxOxygen)
             {
-                Oxygen += Time.deltaTime * Speed * 5;
+                Oxygen += Time.deltaTime * Speed * 2;
             }
         }else
         {
