@@ -10,10 +10,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private FullScreenPassRendererFeature _fullScreenPassRendererFeature;
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject Menu;
-    [SerializeField] private GameObject NoteObject;
+    [SerializeField] public GameObject NoteObject;
     [SerializeField] private TMP_Text NoteText;
-    [SerializeField] private GameObject NewspaperObject;
-    [SerializeField] private GameObject Directory;
+    [SerializeField] public GameObject NewspaperObject;
+    [SerializeField] public GameObject Directory;
     [SerializeField] private TMP_Text NewspaperText;
     [SerializeField] private Animator BlackScreen;
     private PlayerInput playerInput;
@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
     }
     private void Update()
     {
-        if(playerInput.EscButton)
+        if(playerInput.EscButton && (Directory.activeSelf == false) && (NewspaperObject.activeSelf == false) && (NoteObject.activeSelf == false))
         {
             Menu.SetActive(!Menu.activeSelf);
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class PlayerCameraController : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class PlayerCameraController : MonoBehaviour
     private float xRotation;
     private bool HoldItem = false;
     private bool LockMouse = true;
+
+    private UIController UIController;
+    [Inject]
+    public void Construct(UIController UIController)
+    {
+        this.UIController = UIController;
+    }
 
     private void Awake()
     {
@@ -29,7 +37,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.EscButton)
+        if (playerInput.EscButton && (UIController.Directory.activeSelf == false) && (UIController.NewspaperObject.activeSelf == false) && (UIController.NoteObject.activeSelf == false))
             LockMouse = !LockMouse;
 
         if (LockMouse)
