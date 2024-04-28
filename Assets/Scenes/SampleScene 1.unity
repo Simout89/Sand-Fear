@@ -10097,6 +10097,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 586c2f1ee93575d4e959c7283d119013, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 859577d5565c4294581bfff4d35e56e4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8c4205abf70aa84ea2df8d0624c7b13, type: 2}
     - target: {fileID: 919132149155446097, guid: 859577d5565c4294581bfff4d35e56e4,
         type: 3}
       propertyPath: m_Name
@@ -37882,6 +37887,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf0aac922baa1394aa95d4d25ae079c4, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 859577d5565c4294581bfff4d35e56e4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8c4205abf70aa84ea2df8d0624c7b13, type: 2}
     - target: {fileID: 919132149155446097, guid: 859577d5565c4294581bfff4d35e56e4,
         type: 3}
       propertyPath: m_Name
@@ -46933,7 +46943,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.90951556, b: 0.5518868, a: 1}
   m_Intensity: 155.1
   m_Range: 32.176296
   m_SpotAngle: 176.18657
@@ -85657,7 +85667,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.90951556, b: 0.5518868, a: 1}
   m_Intensity: 155.1
   m_Range: 32.1763
   m_SpotAngle: 179
