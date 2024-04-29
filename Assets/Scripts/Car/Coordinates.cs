@@ -8,6 +8,6 @@ public class Coordinates : MonoBehaviour
 
     private void Update()
     {
-        text.text = $"X:{Mathf.Round(Car.transform.position.x * 10) / 10}\nZ:{Mathf.Round(Car.transform.position.z * 10) / 10}";
+        text.text = $"X:{Mathf.Round(Car.transform.position.x * 10) / 10}\nY:{Mathf.Round(Car.transform.position.z * 10) / 10}";
     }
 }
